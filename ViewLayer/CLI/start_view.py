@@ -1,27 +1,20 @@
+from PyInquirer import prompt
 from ViewLayer.CLI.abstract_view import AbstractView
 from ViewLayer.CLI.connexion_view import ConnexionView
-from ViewLayer.CLI.new_user_view import NouvelUtilisateurView
-from BusinessLayer.LocalServices.user_service import UserService
-from PyInquirer import prompt
+from ViewLayer.CLI.new_user_view import NewUserView
 
 
 class StartView(AbstractView):
     def __init__(self):
-        nb_agents_en_base = len(UserService().recuperer_equipe(0))
-        if nb_agents_en_base == 0:
-            self.__creer_agent = True
-        else:
-            self.__creer_agent = False
-        self.__questions = [{'type': 'list','name': 'choix','message': 'Que voulez-vous faire ?',
-                            'choices': ['C) Se connecter', "Q) Quitter l'application"]}]
+        self.__questions = [{'type': 'list','name': 'choice','choices': ['C) Connect', 'N) Create account', 'Q) Quit']}]
 
     def make_choice(self):
-        if self.__creer_agent:
-            print("Création du premier superviseur :")
-            succes = NouvelUtilisateurView(on_setup=True).make_choice()
-            self.__creer_agent = not succes
-            return self
         answers = prompt(self.__questions)
-        if 'q' in str.lower(answers['choix']):
+        if str.upper(answers['choice'][0]) == "F":
+            return ConnexionView()
+        elif str.upper(answers['choice'][0]) == "N":
+            return NewUserView()
+        elif str.upper(answers['choice'][0]) == "Q":
             return None
-        return ConnexionView()
+        else:
+            return StartView()
