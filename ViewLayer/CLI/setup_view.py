@@ -13,9 +13,9 @@ class SetupView(AbstractView):
         self.__first_try = True
         self.__choix_installation = None
         self.__questions = [{'type': 'list', 'name': 'nouvelle_installation', 'message': 'Que souhaitez-vous faire ?',
-                             'choices': ["Créer une nouvelle installation PSyCoQuAC",
-                                         "Se connecter à une installation PSyCoQuAC existante"],
-                             'default': 'Créer une nouvelle installation PSyCoQuAC',
+                             'choices': ["Créer une nouvelle installation BIERE",
+                                         "Se connecter à une installation BIERE existante"],
+                             'default': 'Créer une nouvelle installation BIERE',
                              'filter': self.__install_filter,
                              'when': lambda ans: self.__first_try},
                             {'type': 'list', 'name': 'engine', 'message': 'Quel est le moteur de '
@@ -39,9 +39,9 @@ class SetupView(AbstractView):
 
     @staticmethod
     def __install_filter(val) -> bool:
-        if val == "Créer une nouvelle installation PSyCoQuAC":
+        if val == "Créer une nouvelle installation BIERE":
             return True
-        if val == "Se connecter à une installation PSyCoQuAC existante":
+        if val == "Se connecter à une installation BIERE existante":
             return False
 
     def make_choice(self):
@@ -54,18 +54,18 @@ class SetupView(AbstractView):
             Path(self.__base_path / "./.env").touch(exist_ok=True)
             dotenv_file = (self.__base_path / "./.env").resolve()
             dotenv.load_dotenv(dotenv_file, override=True)
-            os.environ["PSYCOQUAC_ENGINE"] = str(answers.get('engine', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_ENGINE", str(answers.get('engine', "")))
-            os.environ["PSYCOQUAC_HOST"] = str(answers.get('host', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_HOST", str(answers.get('host', "")))
-            os.environ["PSYCOQUAC_PORT"] = str(answers.get('port', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_PORT", str(answers.get('port', "")))
-            os.environ["PSYCOQUAC_DATABASE"] = str(answers.get('database', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_DATABASE", str(answers.get('database', "")))
-            os.environ["PSYCOQUAC_USER"] = str(answers.get('user', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_USER", str(answers.get('user', "")))
-            os.environ["PSYCOQUAC_PASSWORD"] = str(answers.get('password', ""))
-            dotenv.set_key(dotenv_file, "PSYCOQUAC_PASSWORD", str(answers.get('password', "")))
+            os.environ["BIERE_ENGINE"] = str(answers.get('engine', ""))
+            dotenv.set_key(dotenv_file, "BIERE_ENGINE", str(answers.get('engine', "")))
+            os.environ["BIERE_HOST"] = str(answers.get('host', ""))
+            dotenv.set_key(dotenv_file, "BIERE_HOST", str(answers.get('host', "")))
+            os.environ["BIERE_PORT"] = str(answers.get('port', ""))
+            dotenv.set_key(dotenv_file, "BIERE_PORT", str(answers.get('port', "")))
+            os.environ["BIERE_DATABASE"] = str(answers.get('database', ""))
+            dotenv.set_key(dotenv_file, "BIERE_DATABASE", str(answers.get('database', "")))
+            os.environ["BIERE_USER"] = str(answers.get('user', ""))
+            dotenv.set_key(dotenv_file, "BIERE_USER", str(answers.get('user', "")))
+            os.environ["BIERE_PASSWORD"] = str(answers.get('password', ""))
+            dotenv.set_key(dotenv_file, "BIERE_PASSWORD", str(answers.get('password', "")))
             try:
                 DBConnexion().connexion.cursor().close()
                 connexion_ok = True

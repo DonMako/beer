@@ -55,14 +55,6 @@ class UserService(metaclass=Singleton):
 
     @staticmethod
     def recuperer_id_superviseur(id_agent: int) -> int:
-        """
-        Cette méthode permet de récupérer l'identifiant, dans la base de données Agents, du superviseur 
-        de l'agent dont on renseigne l'identifiant de la base de données Agents.
-        :param id_agent:
-        l'identifiant, dans la base de données Agents, de l'agent dont on cherche à récupérer l'identifiant du superviseur
-        :return:
-        renvoie l'identifiant, dans la base de données Agents, du superviseur de l'équipe de l'agent
-        """
         return DAOUser().recuperer_id_superviseur(id_agent)
 
     @staticmethod

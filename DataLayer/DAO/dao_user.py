@@ -14,7 +14,7 @@ class DAOUser(metaclass=Singleton):
 
     def get_user(self, id_user: int) -> User:
         data = self.__interface.get_user(id_user)
-        return user_factory.UserFactory.from_dict(data)
+        return User.from_dict(data)
 
     def create_user(self, infos_user: User, name_user: str, password: str) -> bool:
         data = infos_user.as_dict()
@@ -34,7 +34,7 @@ class DAOUser(metaclass=Singleton):
         mot_de_passe_sale_hashe = self.__saler_hasher_mdp(name_user, password)
         data = self.__interface.connexion_user(name_user, mot_de_passe_sale_hashe)
         if data is not None:
-            agent = user_factory.UserFactory.from_dict(data)
+            agent = User.from_dict(data)
             return agent
         raise ConnectionRefusedError
 
