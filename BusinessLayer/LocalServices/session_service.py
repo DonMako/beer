@@ -5,9 +5,9 @@ from ViewLayer.CLI.session import Session
 
 class SessionService(metaclass=Singleton):
     @staticmethod
-    def open_session(name_user, password):
+    def open_session(id, password):
         try:
-            user = DAOUser().connexion_user(name_user, password)
+            user = DAOUser().connexion_user(id, password)
         except ConnectionRefusedError:
             user = None
         return user
