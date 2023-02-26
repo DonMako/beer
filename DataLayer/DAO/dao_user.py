@@ -1,14 +1,9 @@
-from typing import List
-import BusinessLayer.BusinessObjects.user_factory as user_factory
-import DataLayer.DAO.interface_factory as interface_factory
 from BusinessLayer.BusinessObjects.user import User
 from utils.singleton import Singleton
 from hashlib import sha512
 
 
 class DAOUser(metaclass=Singleton):
-    def __init__(self):
-        self.__interface = interface_factory.InterfaceFactory.get_interface("User")
 
     @staticmethod
     def __saler_hasher_mdp(name_user: str, mot_de_passe_en_clair: str) -> str:

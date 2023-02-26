@@ -5,12 +5,14 @@ from utils.singleton import Singleton
 
 
 class DBConnexion(metaclass=Singleton):
+
     def __init__(self):
         self.__interface = factory.InterfaceFactory().get_interface("Connexion")
-        self.__connexion = self.__interface.ouvrir_connexion(os.environ["PSYCOQUAC_HOST"], os.environ["PSYCOQUAC_PORT"],
-                                                             os.environ["PSYCOQUAC_DATABASE"],
-                                                             os.environ["PSYCOQUAC_USER"],
-                                                             os.environ["PSYCOQUAC_PASSWORD"])
+        self.__connexion = self.__interface.ouvrir_connexion(os.environ["BIERE_HOST"],
+                                                             os.environ["BIERE_PORT"],
+                                                             os.environ["BIERE_DATABASE"],
+                                                             os.environ["BIERE_USER"],
+                                                             os.environ["BIERE_PASSWORD"])
         if self.__connexion is None:
             raise ConnectionError
 
