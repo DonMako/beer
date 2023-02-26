@@ -7,7 +7,7 @@ from ViewLayer.CLI.session import Session
 from ViewLayer.CLI.start_view import StartView
 
 
-class ModifierUserView(AbstractView):
+class ModifyUserView(AbstractView):
     def __init__(self, user: User = None) -> None:
         if user is None:
             self.__user = Session().user

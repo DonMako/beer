@@ -22,4 +22,4 @@ class MenuView(AbstractView):
         if str.upper(answers['choice'][0]) == "M":
             return ModifyUserView()
         if str.upper(answers['choice'][0]) == "Q":
-            SessionService().fermer_session()
+            SessionService().close_session()
