@@ -1,6 +1,6 @@
 from DataLayer.DAO.dao_user import DAOUser
-from ViewLayer.CLI.session import Session
 from utils.singleton import Singleton
+from ViewLayer.CLI.session import Session
 
 
 class SessionService(metaclass=Singleton):
