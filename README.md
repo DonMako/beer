@@ -16,9 +16,10 @@ classDiagram
     Beer <|-- User
     Bar <|-- Beer
     class User{
-      +String identifier
+      +String id
       +String password
       +String favoriteBeerType
+      +Float budget
     }
     class Beer{
       +String name_beer
