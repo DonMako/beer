@@ -1,7 +1,7 @@
 from PyInquirer import prompt
 from BusinessLayer.LocalServices.session_service import SessionService
 from ViewLayer.CLI.abstract_view import AbstractView
-from ViewLayer.CLI.menu import MenuPrincipalView
+from ViewLayer.CLI.menu import MenuView
 from ViewLayer.CLI.session import Session
 from BusinessLayer.BusinessObjects.user import User
 
@@ -19,4 +19,4 @@ class ConnexionView(AbstractView):
             print(self.__error)
             return ConnexionView()
         Session().user = user
-        return MenuPrincipalView()
+        return MenuView()

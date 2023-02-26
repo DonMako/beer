@@ -6,22 +6,22 @@ from hashlib import sha512
 class DAOUser(metaclass=Singleton):
 
     @staticmethod
-    def __saler_hasher_mdp(name_user: str, mot_de_passe_en_clair: str) -> str:
+    def __saler_hasher_mdp(id: str, password: str) -> str:
         pwd = sha512()
-        pwd.update(name_user.encode("utf-8"))
-        pwd.update(mot_de_passe_en_clair.encode("utf-8"))
+        pwd.update(id.encode("utf-8"))
+        pwd.update(password.encode("utf-8"))
         return pwd.hexdigest()
 
     def get_user(self, id_user: int) -> User:
         data = self.__interface.get_user(id_user)
         return User.from_dict(data)
 
-    def create_user(self, infos_user: User, name_user: str, password: str) -> bool:
+    def create_user(self, infos_user: User, id: str, password: str) -> bool:
         data = infos_user.as_dict()
         if data['est_superviseur'] and data['identifiant_superviseur'] is None:
             data['identifiant_superviseur'] = self.__interface.recuperer_dernier_id_agent() + 1
-        data["nom_utilisateur"] = name_user
-        data["mot_de_passe"] = self.__saler_hasher_mdp(name_user, password)
+        data["id"] = id
+        data["mot_de_passe"] = self.__saler_hasher_mdp(id, password)
         return self.__interface.create_user(data)
 
     def modify_user(self, user_to_modify: User) -> bool:

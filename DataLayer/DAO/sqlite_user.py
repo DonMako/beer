@@ -5,24 +5,13 @@ from DataLayer.DAO.interface_user import InterfaceUser
 
 class SQLiteUser(InterfaceUser):
 
-    def delete_user(self, id_user: int) -> bool:
-        try:
-            curseur = DBConnexion().connexion.cursor()
-            curseur.execute("DELETE FROM users WHERE identifiant_user=:id", {"id": id_user})
-            DBConnexion().connexion.commit()
-            curseur.close()
-            return True
-        except Exception as e:
-            print(e)
-            return False
-
     def create_user(self, data: dict) -> bool:
         data = self.__dao_to_sqlite(data)
         try:
             curseur = DBConnexion().connexion.cursor()
             curseur.execute("""
-            INSERT INTO users (est_superviseur, quotite, identifiant_superviseur,nom_utilisateur, mot_de_passe, prenom, nom)
-            VALUES(:est_superviseur, :quotite, :identifiant_superviseur, :nom_utilisateur, :mot_de_passe, :prenom, :nom)
+            INSERT INTO users (id, password, favorite_beer_flavor, budget)
+            VALUES(:id, :password, :favorite_beer_flavor, :budget)
             """, data)
             DBConnexion().connexion.commit()
             curseur.close()
@@ -47,10 +36,20 @@ class SQLiteUser(InterfaceUser):
             print(e)
             return False
 
-    def connexion_user(self, name_user: str, mdp_sale_hashe: str) -> dict:
+    def delete_user(self, id: int, password: str) -> bool:
+        try:
+            curseur = DBConnexion().connexion.cursor()
+            curseur.execute("DELETE FROM users WHERE id=:id AND password=:password", {"id": id, "password": password})
+            DBConnexion().connexion.commit()
+            curseur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+    def connexion_user(self, id: str, mdp_sale_hashe: str) -> dict:
         curseur = DBConnexion().connexion.cursor()
-        curseur.execute("SELECT * FROM agents WHERE nom_utilisateur=:login AND mot_de_passe=:pwd",
-                        {"login": name_user, "pwd": mdp_sale_hashe})
+        curseur.execute("SELECT * FROM users WHERE id=:id AND password=:password", {"id": id, "password": mdp_sale_hashe})
         row = curseur.fetchone()
         curseur.close()
         if row is not None:
@@ -60,32 +59,48 @@ class SQLiteUser(InterfaceUser):
             data = None
         return data
 
-    def modify_id(self, id_agent: int, nom_utilisateur: str, mdp_sale_hashe: str) -> bool:
+    def modify_id(self, id: str, mdp_sale_hashe: str) -> bool:
         try:
             curseur = DBConnexion().connexion.cursor()
-            curseur.execute("""
-            UPDATE agents SET nom_utilisateur=:login, mot_de_passe=:pwd
-            WHERE identifiant_agent=:id
-            """, {'id': id_agent, 'login': nom_utilisateur, 'pwd': mdp_sale_hashe})
+            curseur.execute("UPDATE users SET id=:id WHERE id=:id AND password=:password", {'id': id, 'password': mdp_sale_hashe})
             DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
             print(e)
             return False
-
-    def check_id(self, id_agent: int, nom_utilisateur: str, mdp_sale_hashe: str) -> bool:
-        curseur = DBConnexion().connexion.cursor()
-        curseur.execute("SELECT nom_utilisateur, mot_de_passe FROM agents WHERE identifiant_agent=:id",
-                        {'id': id_agent})
-        row = curseur.fetchone()
-        curseur.close()
-        return nom_utilisateur == row['nom_utilisateur'] and mdp_sale_hashe == row['mot_de_passe']
     
-    def get_favorite_flavour(self, id_agent: int) -> float:
-        curseur = DBConnexion().connexion.cursor()
-        curseur.execute("SELECT quotite FROM agents WHERE identifiant_agent=:id", {"id": id_agent})
-        row = curseur.fetchone()
-        curseur.close()
-        data = float(row['quotite'])
-        return data
+    def modify_password(self, id: str, mdp_sale_hashe: str) -> bool:
+        try:
+            curseur = DBConnexion().connexion.cursor()
+            curseur.execute("UPDATE users SET id=:id WHERE id=:id AND password=:password", {'id': id, 'password': mdp_sale_hashe})
+            DBConnexion().connexion.commit()
+            curseur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+        
+    def modify_favorite_beer_flavor(self, id: str, mdp_sale_hashe: str, favorite_beer_flavor: str) -> bool:
+        try:
+            curseur = DBConnexion().connexion.cursor()
+            curseur.execute("UPDATE users SET favorite_beer_flavor=:favorite_beer_flavor WHERE id=:id AND password=:password", 
+                            {'favorite_beer_flavor': favorite_beer_flavor, 'id': id, 'password': mdp_sale_hashe})
+            DBConnexion().connexion.commit()
+            curseur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+        
+    def modify_budget(self, id: str, mdp_sale_hashe: str, budget: float) -> bool:
+        try:
+            curseur = DBConnexion().connexion.cursor()
+            curseur.execute("UPDATE users SET budget=:budget WHERE id=:id AND password=:password",
+                            {'budget': budget, 'id': id, 'password': mdp_sale_hashe})
+            DBConnexion().connexion.commit()
+            curseur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
