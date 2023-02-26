@@ -9,7 +9,7 @@ Le projet BIERE, pour "Bacchus : Identification Et Récupération des Établisse
 Le projet BIERE est une application 2-tier de type CRUD, dans laquelle l'utilisateur renseigne le lieu où il se trouve. 
 L'application requête ensuite l'API Places de Google Maps afin de trouver les lieux.
 
-## Modèle des données
+## Structure des données
 
 ```mermaid
 classDiagram

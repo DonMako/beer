@@ -1,6 +1,5 @@
 from PyInquirer import prompt
-from DataLayer.DAO.db_connexion import DBConnexion  # Entorse à la séparation des couches, pour éviter de surcharger
-#                                                       l'architecture d'un service d'installation
+from DataLayer.DAO.db_connexion import DBConnexion
 from ViewLayer.CLI.abstract_view import AbstractView
 import ViewLayer.CLI.menu as mp
 from pathlib import Path
