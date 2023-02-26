@@ -1,7 +1,7 @@
 from PyInquirer import prompt
 from BusinessLayer.LocalServices.session_service import SessionService
 from ViewLayer.CLI.abstract_view import AbstractView
-from ViewLayer.CLI.find_bar_view import FindBarView
+from ViewLayer.CLI.find_pubs_view import FindPubsView
 from ViewLayer.CLI.modify_user_view import ModifyUserView
 import ViewLayer.CLI.start_view as start
 from ViewLayer.CLI.session import Session
@@ -18,7 +18,7 @@ class MenuView(AbstractView):
         self.__questions[0]['choices'].append('Q) Me déconnecter')
         answers = prompt(self.__questions)
         if str.upper(answers['choice'][0]) == "F":
-            return FindBarView()
+            return FindPubsView()
         if str.upper(answers['choice'][0]) == "M":
             return ModifyUserView()
         if str.upper(answers['choice'][0]) == "Q":
