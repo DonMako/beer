@@ -2,11 +2,11 @@
 
 ## Qu'est-ce que le projet BIERE ?
 
-Le projet BIERE, pour "Bacchus : Identification Et Récupération des Établissements", vise à donner des adresses de bar à ses utilisateurs, selon leur localisation ainsi que leur préférence en matière de bière.
+Le projet BIERE, pour "Bacchus : Identification Et Récupération des Établissements", vise à donner des adresses de bars à ses utilisateurs, selon leur localisation et leur profil (péférence en matière de type de bière et budget).
 
 ## Comment ça marche ?
 
-Le projet BIERE est une application 2-tier de type CRUD, dans laquelle l'utilisateur renseigne le lieu où il se trouve. 
+Le projet BIERE est une application dans laquelle l'utilisateur renseigne le lieu où il se trouve. 
 L'application requête ensuite l'API Places de Google Maps afin de trouver les lieux.
 
 ## Structure des données
