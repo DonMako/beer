@@ -5,7 +5,7 @@ from DataLayer.DAO.interface_connexion import InterfaceConnexion
 
 class PGConnexion(InterfaceConnexion):
 
-    def ouvrir_connexion(self, host, port, database, user, password):
+    def open_connexion(self, host, port, database, user, password):
         try:
             connexion_string = "host=" + str(host) + " port=" + str(port) + " dbname=" + str(database) +\
                                " user=" + str(user) + " password=" + str(password)
@@ -17,6 +17,6 @@ class PGConnexion(InterfaceConnexion):
             print(e)
             return None
 
-    def fermer_connexion(self, connexion):
+    def close_connexion(self, connexion):
         if connexion is not None:
             connexion.close()
