@@ -1,15 +1,16 @@
-# Projet BIERE
+# Project BIERE
 
-## Qu'est-ce que le projet BIERE ?
+## What is the BIERE project ?
 
-Le projet BIERE, pour "Bacchus : Identification Et Récupération des Établissements", vise à donner des adresses de bars à ses utilisateurs, selon leur localisation et leur profil (péférence en matière de type de bière et budget).
+The BIERE project (for "Bacchus : Identification Et Récupération des Établissements") is a french application aiming to give pubs' adresses to users, according to their localisation and their profile (the favorite beer flavor and their budget).
 
-## Comment ça marche ?
+## How does it work ?
 
 Le projet BIERE est une application dans laquelle l'utilisateur renseigne le lieu où il se trouve. 
-L'application requête ensuite l'API Places de Google Maps afin de trouver les lieux.
+L'application cherche ensuite dans sa base de données des bars situés dans le lieu indiqué par l'utilisateur, et vendant des bières du type de l'utilisateur et dans son budget.
+L'application renvoie ensuite le nom des bars correspondanys
 
-## Structure des données
+## Data structure
 
 ```mermaid
 classDiagram
@@ -32,7 +33,7 @@ classDiagram
     }
 ```
 
-## Auteurs
+## Authors
 
 BERTAIL Aurélien
 ÉVAIN Manon
