@@ -6,10 +6,10 @@ from typing import List
 
 class UserService(metaclass=Singleton):
     @staticmethod
-    def create_user(quotite: float, nom_utilisateur: str,mot_de_passe: str, prenom: str, nom: str) -> bool:
+    def create_user(quotite: float, name_user: str, password: str, prenom: str, nom: str) -> bool:
         data_agent = {'prenom': prenom, 'nom': nom, 'quotite': quotite,'identifiant_agent': DAOUser().recuperer_dernier_id_agent() + 1}
-        nouvel_agent = agent_factory.AgentFactory.from_dict(data_agent)
-        return DAOUser().create_user(nouvel_agent, nom_utilisateur, mot_de_passe)
+        new_user = User.from_dict(data_agent)
+        return DAOUser().create_user(new_user, name_user, password)
 
     @staticmethod
     def modifier_agent(agent_a_modifier: User) -> bool:
