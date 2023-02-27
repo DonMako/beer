@@ -1,5 +1,5 @@
-from utils.singleton import Singleton
 from BusinessLayer.BusinessObjects.user import User
+from utils.singleton import Singleton
 
 
 class Session(metaclass=Singleton):
