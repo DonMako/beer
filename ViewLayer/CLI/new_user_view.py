@@ -11,7 +11,7 @@ class NewUserView(AbstractView):
         self.__questions = [{'type': 'input', 'name': 'id', 'message': 'Id :'},
                             {'type': 'password', 'name': 'password', 'message': 'Password :'},
                             {'type': 'input', 'name': 'favorite_beer_flavor', 'message': "Favorite beer flavor :"},
-                            {'type': 'input', 'name': 'budget', 'message': "Budget :"}]
+                            {'type': 'input', 'name': 'budget', 'message': "Budget :", 'filter': float}]
 
     def make_choice(self):
         answers = prompt(self.__questions)
