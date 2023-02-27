@@ -41,7 +41,7 @@ class SetupView(abstractView.AbstractView):
         while not connexion_ok:
             answers = prompt(self.__questions)
             if self.__first_try:
-                self.__choix_installation = answers['nouvelle_installation']
+                self.__choix_installation = answers['new_installation']
             Path(self.__base_path / "./.env").touch(exist_ok=True)
             dotenv_file = (self.__base_path / "./.env").resolve()
             dotenv.load_dotenv(dotenv_file, override=True)
