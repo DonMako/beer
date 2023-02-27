@@ -1,10 +1,10 @@
-from PyInquirer import prompt
 from BusinessLayer.LocalServices.session_service import SessionService
+from PyInquirer import prompt
 from ViewLayer.CLI.abstract_view import AbstractView
 from ViewLayer.CLI.find_pubs_view import FindPubsView
 from ViewLayer.CLI.modify_user_view import ModifyUserView
-import ViewLayer.CLI.start_view as start
 from ViewLayer.CLI.session import Session
+from ViewLayer.CLI.start_view import StartView
 
 
 class MenuView(AbstractView):
@@ -14,7 +14,7 @@ class MenuView(AbstractView):
 
     def make_choice(self):
         if Session().user is None:
-            return start.StartView()
+            return StartView()
         self.__questions[0]['choices'].append('Q) Me déconnecter')
         answers = prompt(self.__questions)
         if str.upper(answers['choice'][0]) == "F":
