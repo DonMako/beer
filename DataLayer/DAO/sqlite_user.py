@@ -9,8 +9,8 @@ class SQLiteUser(interfaceUser.InterfaceUser):
             curseur = dbConnexion.DBConnexion().connexion.cursor()
             curseur.execute(
             """
-            INSERT INTO users (id_user, email_user, password_user, favorite_beer_flavor, budget_user)
-            VALUES(:id_user, :email_user, :password_user, :favorite_beer_flavor, :budget_user)
+            INSERT INTO users (id_user, email_user, password_user, favorite_beer_type, budget_user)
+            VALUES(:id_user, :email_user, :password_user, :favorite_beer_type, :budget_user)
             """, data)
             dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
@@ -25,7 +25,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
             curseur.execute(
             """
             UPDATE users SET id_user=:id_user, email_user=:email_user, password_user=:password_user,
-                             favorite_beer_flavor=:favorite_beer_flavor, budget_user=:budget_user 
+                             favorite_beer_type=:favorite_beer_type, budget_user=:budget_user 
             WHERE id_user=:id_user, password_user=:password_user
             """, data)
             dbConnexion.DBConnexion().connexion.commit()

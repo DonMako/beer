@@ -16,7 +16,7 @@ class ModifyUserView(abstractView.AbstractView):
             self.__user = user
         self.__main_prompt = [{'type': 'list', 'name': 'choices',
                                'message': 'What do you want to modify ?',
-                               'choices': ['P) Password', "F) Favourite beer's flavour", 'B) Budget', 'D) Delete account']}]
+                               'choices': ['P) Password', "F) Favourite beers' type", 'B) Budget', 'D) Delete account']}]
         self.__main_prompt[0]['choices'].append('M) Menu')
         self.__continue_prompt = [{'type': 'list', 'name': 'choices', 'message': 'Modify something else ?',
                                    'choices': ['Y) Yes', 'N) No']}]
@@ -37,13 +37,13 @@ class ModifyUserView(abstractView.AbstractView):
                         email_adress = userService.UserService().modify_user(self.__user)
                         emailService.EMailService.send_email(email_adress, 'password')
                 elif "F" in str.upper(answers0['choices'][0]):
-                    prompt_favorite_beer_flavor = [{'type': 'input', 'name': 'favorite_beer_flavor', 'message': "New favorite beer flavor :"}]
-                    answer = prompt(prompt_favorite_beer_flavor)
-                    self.__user.favorite_beer_flavor = answer['favorite_beer_flavor']
+                    prompt_favorite_beer_type = [{'type': 'input', 'name': 'favorite_beer_type', 'message': "New favorite beer flavor :"}]
+                    answer = prompt(prompt_favorite_beer_type)
+                    self.__user.favorite_beer_type = answer['favorite_beer_type']
                     succes = userService.UserService().modify_user(self.__user)
                     if succes:
                         email_adress = userService.UserService().modify_user(self.__user)
-                        emailService.EMailService.send_email(email_adress, 'favorite beer flavor')
+                        emailService.EMailService.send_email(email_adress, 'favorite beer type')
                 elif "B" in str.upper(answers0['choices'][0]):
                     prompt_budget = [{'type': 'input', 'name': 'budget_user', 'message': "New budget :",'filter': float}]
                     answer = prompt(prompt_budget)

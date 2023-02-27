@@ -10,9 +10,9 @@ class PGUser(interfaceUser.InterfaceUser):
             with dbConnexion.DBConnexion().connexion.cursor() as curseur:
                 curseur.execute(
                 """
-                INSERT INTO users (id_user, email_user, password_user, favorite_beer_flavor, budget_user) VALUES((%s), (%s), (%s), (%s), (%s), (%s), (%s))
+                INSERT INTO users (id_user, email_user, password_user, favorite_beer_type, budget_user) VALUES((%s), (%s), (%s), (%s), (%s), (%s), (%s))
                 """,
-                (data['id_user'], data['email_user'], data['password_user'], data['favorite_beer_flavor'], data['budget_user']))
+                (data['id_user'], data['email_user'], data['password_user'], data['favorite_beer_type'], data['budget_user']))
             return True
         except Exception as e:
             print(e)
@@ -23,10 +23,10 @@ class PGUser(interfaceUser.InterfaceUser):
             with dbConnexion.DBConnexion().connexion.cursor() as curseur:
                 curseur.execute(
                 """
-                UPDATE users SET id_user=(%s), email_user=(%s), password_user=(%s), favorite_beer_flavor=(%s), budget_user=(%s) 
+                UPDATE users SET id_user=(%s), email_user=(%s), password_user=(%s), favorite_beer_type=(%s), budget_user=(%s) 
                 WHERE id_user=(%s) AND password_user=(%s)
                 """,
-                (data['id_user'], data['email_user'], data['password_user'], data['favorite_beer_flavor'], data['budget_user']))
+                (data['id_user'], data['email_user'], data['password_user'], data['favorite_beer_type'], data['budget_user']))
             return True
         except Exception as e:
             print(e)
