@@ -41,8 +41,8 @@ classDiagram
       +String id_user
       +String email_user
       +String password_user
-      +String favoriteBeerType
-      +Float budget
+      +String favorite_beer_type
+      +Float budget_user
     }
     class Beer{
       +String name_beer
