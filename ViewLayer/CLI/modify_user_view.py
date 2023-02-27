@@ -15,7 +15,7 @@ class ModifyUserView(AbstractView):
             self.__user = user
         self.__main_prompt = [{'type': 'list', 'name': 'choice',
                                'message': 'What do you want to modify ?',
-                               'choices': ['I) Id', 'P) Password', "F) Favourite beer's flavour", 'B) Budget', 'D) Delete account']}]
+                               'choices': ['P) Password', "F) Favourite beer's flavour", 'B) Budget', 'D) Delete account']}]
         self.__main_prompt[0]['choices'].append('M) Menu')
         self.__continue_prompt = [{'type': 'list', 'name': 'choice', 'message': 'Modify something else ?',
                                    'choices': ['Y) Yes', 'N) No']}]
@@ -27,12 +27,7 @@ class ModifyUserView(AbstractView):
             if str.upper(answers0['choices'][0]) == "M":
                 modify = False
             else:
-                if str.upper(answers0['choices'][0]) == "I":
-                    prompt_id = [{'type': 'input', 'name': 'id', 'message': "New id :"}]
-                    answer = prompt(prompt_id)
-                    self.__user.id = answer['id']
-                    succes = UserService().modify_user(self.__user)
-                elif str.upper(answers0['choices'][0]) == "P":
+                if str.upper(answers0['choices'][0]) == "P":
                     prompt_password = [{'type': 'input', 'name': 'password', 'message': "New password :"}]
                     answer = prompt(prompt_password)
                     self.__user.password = answer['password']
