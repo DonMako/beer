@@ -1,8 +1,8 @@
-import os
-import DataLayer.DAO.sqlite_connexion as sqlite_connexion
-import DataLayer.DAO.sqlite_user as sqlite_user
 import DataLayer.DAO.pg_connexion as pg_connexion
 import DataLayer.DAO.pg_user as pg_user
+import DataLayer.DAO.sqlite_connexion as sqlite_connexion
+import DataLayer.DAO.sqlite_user as sqlite_user
+import os
 from utils.singleton import Singleton
 
 
