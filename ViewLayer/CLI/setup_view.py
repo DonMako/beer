@@ -1,8 +1,8 @@
+from DataLayer.DAO.db_connexion import DBConnexion
 import dotenv
 import os
-from PyInquirer import prompt
 from pathlib import Path
-from DataLayer.DAO.db_connexion import DBConnexion
+from PyInquirer import prompt
 from ViewLayer.CLI.abstract_view import AbstractView
 from ViewLayer.CLI.menu import MenuView
 
