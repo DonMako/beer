@@ -1,5 +1,5 @@
 from BusinessLayer.BusinessObjects.user import User
-from DataLayer.DAO.interface_factory import InterfaceFactory
+import DataLayer.DAO.interface_factory as interfaceFactory
 from hashlib import sha512
 from utils.singleton import Singleton
 
@@ -7,7 +7,7 @@ from utils.singleton import Singleton
 class DAOUser(metaclass=Singleton):
 
     def __init__(self):
-        self.__interface = InterfaceFactory.get_interface("User")
+        self.__interface = interfaceFactory.InterfaceFactory.get_interface("User")
 
     @staticmethod
     def __saler_hasher_mdp(password_user: str) -> str:

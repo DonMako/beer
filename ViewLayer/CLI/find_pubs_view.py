@@ -1,8 +1,8 @@
 from PyInquirer import prompt
-from ViewLayer.CLI.abstract_view import AbstractView
+import ViewLayer.CLI.abstract_view as abstractView
 
 
-class FindPubsView(AbstractView):
+class FindPubsView(abstractView.AbstractView):
     def __init__(self) -> None:
         self.__questions = [{'type': 'input', 'name': 'place', 'message': 'Where are you ?'}]
 

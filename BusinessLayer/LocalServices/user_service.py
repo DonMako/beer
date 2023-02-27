@@ -1,5 +1,5 @@
 from BusinessLayer.BusinessObjects.user import User
-from DataLayer.DAO.dao_user import DAOUser
+import DataLayer.DAO.dao_user as daoUser
 from utils.singleton import Singleton
 
 
@@ -9,12 +9,12 @@ class UserService(metaclass=Singleton):
         data_user = {'id_user': id_user, 'mail_user': mail_user, 'password_user': password_user,
                      'favorite_beer_flavor': favorite_beer_flavor, 'budget_user': budget_user}
         new_user = User.from_dict(data_user)
-        return DAOUser().create_user(new_user, id, password_user)
+        return daoUser.DAOUser().create_user(new_user, id, password_user)
 
     @staticmethod
     def modify_user(user_to_modify: User) -> bool:
-        return DAOUser().modify_user(user_to_modify)
+        return daoUser.DAOUser().modify_user(user_to_modify)
 
     @staticmethod
     def delete_user(user_to_delete: int) -> bool:
-        return DAOUser().delete_user(user_to_delete)
+        return daoUser.DAOUser().delete_user(user_to_delete)

@@ -1,13 +1,13 @@
-from DataLayer.DAO.db_connexion import DBConnexion
+import DataLayer.DAO.db_connexion as dbConnexion
 import dotenv
 import os
 from pathlib import Path
 from PyInquirer import prompt
-from ViewLayer.CLI.abstract_view import AbstractView
-from ViewLayer.CLI.menu import MenuView
+import ViewLayer.CLI.abstract_view as abstractView
+import ViewLayer.CLI.menu as menuView
 
 
-class SetupView(AbstractView):
+class SetupView(abstractView.AbstractView):
     def __init__(self, base_path) -> None:
         self.__base_path = base_path
         self.__first_try = True
@@ -59,13 +59,13 @@ class SetupView(AbstractView):
             os.environ["BIERE_PASSWORD"] = str(answers.get('password_user', ""))
             dotenv.set_key(dotenv_file, "BIERE_PASSWORD", str(answers.get('password_user', "")))
             try:
-                DBConnexion().connexion.cursor().close()
+                dbConnexion.DBConnexion().connexion.cursor().close()
                 connexion_ok = True
             except ConnectionError:
                 print("Connexion to the database impossible. Please enter again the parameters.")
                 self.__first_try = False
                 connexion_ok = False
-                DBConnexion.clear()
+                dbConnexion.DBConnexion.clear()
                 try:
                     Path(self.__base_path / "./.env").unlink()
                 except FileNotFoundError:
@@ -79,12 +79,12 @@ class SetupView(AbstractView):
             if confirm['confirm']:
                 script_file = "./sql/" + str.lower(answers['engine']) + ".sql"
                 script_path = (self.__base_path / script_file).resolve()
-                curseur = DBConnexion().connexion.cursor()
+                curseur = dbConnexion.DBConnexion().connexion.cursor()
                 if answers['engine'] == "PostgreSQL":
                     curseur.execute(open(script_path, "r", encoding="utf-8").read())
                 elif answers['engine'] == "SQLite":
                     curseur.executescript(open(script_path, "r", encoding="utf-8").read())
-                    DBConnexion().connexion.commit()
+                    dbConnexion.DBConnexion().connexion.commit()
                 curseur.close()
                 print("Configuration de la base de données terminée.")
                 succes = True
@@ -97,5 +97,5 @@ class SetupView(AbstractView):
         else:
             succes = True
         if succes:
-            return MenuView()
+            return menuView.MenuView()
         return SetupView(self.__base_path)

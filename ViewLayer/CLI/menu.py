@@ -1,25 +1,25 @@
-from BusinessLayer.LocalServices.session_service import SessionService
+import BusinessLayer.LocalServices.session_service as sessionService
 from PyInquirer import prompt
-from ViewLayer.CLI.abstract_view import AbstractView
-from ViewLayer.CLI.find_pubs_view import FindPubsView
-from ViewLayer.CLI.modify_user_view import ModifyUserView
-from ViewLayer.CLI.session import Session
-from ViewLayer.CLI.start_view import StartView
+import ViewLayer.CLI.abstract_view as abstractView
+import ViewLayer.CLI.find_pubs_view as findPubsView
+import ViewLayer.CLI.modify_user_view as modifyUserView
+import ViewLayer.CLI.session as session
+import ViewLayer.CLI.start_view as startView
 
 
-class MenuView(AbstractView):
+class MenuView(abstractView.AbstractView):
     def __init__(self) -> None:
         self.__questions = [{'type': 'list', 'name': 'choice', 'message': 'What do you want to do ?',
                              'choices': ['F) Find bars', 'M) Modify my profile', 'Q) Disconnect']}]
 
     def make_choice(self):
-        if Session().user is None:
-            return StartView()
+        if session.Session().user is None:
+            return startView.StartView()
         self.__questions[0]['choices'].append('Q) Me déconnecter')
         answers = prompt(self.__questions)
         if str.upper(answers['choice'][0]) == "F":
-            return FindPubsView()
+            return findPubsView.FindPubsView()
         if str.upper(answers['choice'][0]) == "M":
-            return ModifyUserView()
+            return modifyUserView.ModifyUserView()
         if str.upper(answers['choice'][0]) == "Q":
-            SessionService().close_session()
+            sessionService.SessionService().close_session()

@@ -1,17 +1,17 @@
-from DataLayer.DAO.db_connexion import DBConnexion
-from DataLayer.DAO.interface_user import InterfaceUser
+import DataLayer.DAO.db_connexion as dbConnexion
+import DataLayer.DAO.interface_user as interfaceUser
 
 
-class SQLiteUser(InterfaceUser):
+class SQLiteUser(interfaceUser.InterfaceUser):
 
     def create_user(self, data: dict) -> bool:
         try:
-            curseur = DBConnexion().connexion.cursor()
+            curseur = dbConnexion.DBConnexion().connexion.cursor()
             curseur.execute("""
             INSERT INTO users (id_user, mail_user, password_user, favorite_beer_flavor, budget_user)
             VALUES(:id_user, :mail_user, :password_user, :favorite_beer_flavor, :budget_user)
             """, data)
-            DBConnexion().connexion.commit()
+            dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -20,12 +20,12 @@ class SQLiteUser(InterfaceUser):
 
     def modify_user(self, data: dict) -> bool:
         try:
-            curseur = DBConnexion().connexion.cursor()
+            curseur = dbConnexion.DBConnexion().connexion.cursor()
             curseur.execute("""
             UPDATE users SET id_user=:id_user, mail_user=:mail_user, password_user=:password_user,
             favorite_beer_flavor=:favorite_beer_flavor, budget_user=:budget_user WHERE id_user=:id_user AND password_user=:password_user
             """, data)
-            DBConnexion().connexion.commit()
+            dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -34,10 +34,10 @@ class SQLiteUser(InterfaceUser):
 
     def delete_user(self, id_user: int, password_user: str) -> bool:
         try:
-            curseur = DBConnexion().connexion.cursor()
+            curseur = dbConnexion.DBConnexion().connexion.cursor()
             curseur.execute("DELETE FROM users WHERE id_user=:id_user AND password_user=:password_user",
                             {"id_user": id_user, "password_user": password_user})
-            DBConnexion().connexion.commit()
+            dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -45,7 +45,7 @@ class SQLiteUser(InterfaceUser):
             return False
 
     def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
-        curseur = DBConnexion().connexion.cursor()
+        curseur = dbConnexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT * FROM users WHERE id_user=:id_user AND password_user=:password_user",
                         {"id_user": id, "password_user": password_sale_hashe})
         row = curseur.fetchone()
