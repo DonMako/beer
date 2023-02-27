@@ -9,7 +9,8 @@ class EMailService(metaclass=Singleton):
         sender = "projectbiere@gmail.com"
         password = "823M458dXAgNNsr"
         addressee = email_user
-        message = "Warning, your " + info_changed + " just has been changed.\nIf you're not at the origin of this modification, please warn us."
+        message = "Subject: Your BIERE account just changed. \n\n Warning, your" + info_changed + """ just has been changed.
+                   \nIf you're not at the origin of this modification, please warn us."""
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender, password)
