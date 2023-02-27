@@ -5,10 +5,10 @@ from utils.singleton import Singleton
 class EMailService(metaclass=Singleton):
     @staticmethod
     def send_email(email_user: str, info_changed: str):
-        smtp_server = 'smtp.gmail.com'
+        smtp_server = "smtp.gmail.com"
         port = 465
-        sender = 'projectBIERE@gmail.com'
-        password = '823M458dXAgNNsr'
+        sender = "projectbiere@gmail.com"
+        password = "823M458dXAgNNsr"
         addressee = email_user
         message = "Warning, your " + info_changed + " just has been changed.\nIf you're not at the origin of this modification, please warn us."
         context = ssl.create_default_context()
