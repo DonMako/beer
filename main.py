@@ -1,6 +1,5 @@
 import dotenv
 from pathlib import Path
-import ViewLayer.CLI.setup_view as setupView
 import ViewLayer.CLI.start_view as startView
 
 
@@ -10,8 +9,6 @@ if __name__ == '__main__':
         dotenv_file = (base_path / "./.env").resolve()
         dotenv.load_dotenv(dotenv_file, override=True)
         actual_view = startView.StartView()
-    else:
-        actual_view = setupView.SetupView(base_path)
     border_path = (base_path / "./others/border.txt").resolve()
     while actual_view:
         with open(border_path, 'r', encoding="utf-8") as border:
