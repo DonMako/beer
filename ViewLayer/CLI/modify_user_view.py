@@ -1,6 +1,6 @@
-from PyInquirer import prompt
 from BusinessLayer.BusinessObjects.user import User
 from BusinessLayer.LocalServices.user_service import UserService
+from PyInquirer import prompt
 from ViewLayer.CLI.abstract_view import AbstractView
 from ViewLayer.CLI.menu import MenuView
 from ViewLayer.CLI.session import Session
@@ -30,7 +30,7 @@ class ModifyUserView(AbstractView):
                 if str.upper(answers0['choices'][0]) == "P":
                     prompt_password = [{'type': 'input', 'name': 'password', 'message': "New password :"}]
                     answer = prompt(prompt_password)
-                    self.__user.password = answer['password']
+                    self.__user.password_user = answer['password']
                     succes = UserService().modify_user(self.__user)
                 elif str.upper(answers0['choices'][0]) == "F":
                     prompt_favorite_beer_flavor = [{'type': 'input', 'name': 'favorite_beer_flavor', 'message': "New favorite beer flavor :"}]
@@ -40,7 +40,7 @@ class ModifyUserView(AbstractView):
                 elif str.upper(answers0['choices'][0]) == "B":
                     prompt_budget = [{'type': 'input', 'name': 'budget', 'message': "New budget :",'filter': float}]
                     answer = prompt(prompt_budget)
-                    self.__user.budget = answer['budget']
+                    self.__user.budget_user = answer['budget']
                     succes = UserService().modify_user(self.__user)
                 elif str.upper(answers0['choices'][0]) == "D":
                     prompt_verif = [{'type': 'input', 'name': 'verif', 'message': "You are about to delete your account. Do you confirm to do this action ?"}]
