@@ -86,7 +86,7 @@ class SetupView(abstractView.AbstractView):
                     curseur.executescript(open(script_path, "r", encoding="utf-8").read())
                     dbConnexion.DBConnexion().connexion.commit()
                 curseur.close()
-                print("Configuration de la base de données terminée.")
+                print("Database's confguration done.")
                 succes = True
             else:
                 succes = False
