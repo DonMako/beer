@@ -26,23 +26,23 @@ class SetupView(abstractView.AbstractView):
         connexion_ok = False
         while not connexion_ok:
             answers = prompt(self.__questions)
-            if str(answers.get('engine', "")) == "PostgreSQL":
-                answers2 = prompt(self.__questions_PG)
             Path(self.__base_path / "./.env").touch(exist_ok=True)
             dotenv_file = (self.__base_path / "./.env").resolve()
             dotenv.load_dotenv(dotenv_file, override=True)
             os.environ["BIERE_ENGINE"] = str(answers.get('engine', ""))
             dotenv.set_key(dotenv_file, "BIERE_ENGINE", str(answers.get('engine', "")))
-            os.environ["BIERE_HOST"] = str(answers.get('host', ""))
-            dotenv.set_key(dotenv_file, "BIERE_HOST", str(answers2.get('host', "")))
-            os.environ["BIERE_PORT"] = str(answers2.get('port', ""))
-            dotenv.set_key(dotenv_file, "BIERE_PORT", str(answers2.get('port', "")))
-            os.environ["BIERE_DATABASE"] = str(answers2.get('database', ""))
-            dotenv.set_key(dotenv_file, "BIERE_DATABASE", str(answers2.get('database', "")))
-            os.environ["BIERE_USER"] = str(answers2.get('id_user', ""))
-            dotenv.set_key(dotenv_file, "BIERE_USER", str(answers2.get('id_user', "")))
-            os.environ["BIERE_PASSWORD"] = str(answers2.get('password_user', ""))
-            dotenv.set_key(dotenv_file, "BIERE_PASSWORD", str(answers2.get('password_user', "")))
+            if str(answers.get('engine', "")) == "PostgreSQL":
+                answers2 = prompt(self.__questions_PG)
+                os.environ["BIERE_HOST"] = str(answers2.get('host', ""))
+                dotenv.set_key(dotenv_file, "BIERE_HOST", str(answers2.get('host', "")))
+                os.environ["BIERE_PORT"] = str(answers2.get('port', ""))
+                dotenv.set_key(dotenv_file, "BIERE_PORT", str(answers2.get('port', "")))
+                os.environ["BIERE_DATABASE"] = str(answers2.get('database', ""))
+                dotenv.set_key(dotenv_file, "BIERE_DATABASE", str(answers2.get('database', "")))
+                os.environ["BIERE_USER"] = str(answers2.get('id_user', ""))
+                dotenv.set_key(dotenv_file, "BIERE_USER", str(answers2.get('id_user', "")))
+                os.environ["BIERE_PASSWORD"] = str(answers2.get('password_user', ""))
+                dotenv.set_key(dotenv_file, "BIERE_PASSWORD", str(answers2.get('password_user', "")))
             try:
                 dbConnexion.DBConnexion().connexion.cursor().close()
                 connexion_ok = True
