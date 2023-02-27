@@ -15,7 +15,7 @@ class ModifyUserView(abstractView.AbstractView):
             self.__user = user
         self.__main_prompt = [{'type': 'list', 'name': 'choices',
                                'message': 'What do you want to modify ?',
-                               'choices': ['M) Mailing adress', 'P) Password', "F) Favourite beer's flavour", 'B) Budget', 'D) Delete account']}]
+                               'choices': ['M) EMailing adress', 'P) Password', "F) Favourite beer's flavour", 'B) Budget', 'D) Delete account']}]
         self.__main_prompt[0]['choices'].append('H) Menu')
         self.__continue_prompt = [{'type': 'list', 'name': 'choices', 'message': 'Modify something else ?',
                                    'choices': ['Y) Yes', 'N) No']}]
@@ -28,9 +28,9 @@ class ModifyUserView(abstractView.AbstractView):
                 modify = False
             else:
                 if "M" in str.upper(answers0['choices'][0]):
-                    prompt_mail = [{'type': 'input', 'name': 'mail_user', 'message': "New mailing adress :"}]
-                    answer = prompt(prompt_mail)
-                    self.__user.mail_user = answer['mail_user']
+                    prompt_email = [{'type': 'input', 'name': 'email_user', 'message': "New mailing adress :"}]
+                    answer = prompt(prompt_email)
+                    self.__user.email_user = answer['email_user']
                     succes = userService.UserService().modify_user(self.__user)
                 elif "P" in str.upper(answers0['choices'][0]):
                     prompt_password = [{'type': 'input', 'name': 'password_user', 'message': "New password :"}]

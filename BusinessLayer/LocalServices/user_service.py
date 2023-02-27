@@ -5,8 +5,8 @@ from utils.singleton import Singleton
 
 class UserService(metaclass=Singleton):
     @staticmethod
-    def create_user(id_user: str, mail_user: str, password_user: str, favorite_beer_flavor: str, budget_user: float) -> bool:
-        data_user = {'id_user': id_user, 'mail_user': mail_user, 'password_user': password_user,
+    def create_user(id_user: str, email_user: str, password_user: str, favorite_beer_flavor: str, budget_user: float) -> bool:
+        data_user = {'id_user': id_user, 'email_user': email_user, 'password_user': password_user,
                      'favorite_beer_flavor': favorite_beer_flavor, 'budget_user': budget_user}
         new_user = User.from_dict(data_user)
         return daoUser.DAOUser().create_user(new_user, id, password_user)

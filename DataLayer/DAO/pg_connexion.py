@@ -9,9 +9,7 @@ class PGConnexion(interfaceConnexion.InterfaceConnexion):
         try:
             connexion_string = "host=" + str(host) + " port=" + str(port) + " dbname=" + str(database) +\
                                " user=" + str(user) + " password=" + str(password)
-            connexion = pg.connect(conninfo=connexion_string,
-                                   row_factory=dict_row,
-                                   autocommit=True)
+            connexion = pg.connect(conninfo=connexion_string, row_factory=dict_row, autocommit=True)
             return connexion
         except Exception as e:
             print(e)

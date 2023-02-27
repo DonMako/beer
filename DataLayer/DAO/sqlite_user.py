@@ -7,9 +7,10 @@ class SQLiteUser(interfaceUser.InterfaceUser):
     def create_user(self, data: dict) -> bool:
         try:
             curseur = dbConnexion.DBConnexion().connexion.cursor()
-            curseur.execute("""
-            INSERT INTO users (id_user, mail_user, password_user, favorite_beer_flavor, budget_user)
-            VALUES(:id_user, :mail_user, :password_user, :favorite_beer_flavor, :budget_user)
+            curseur.execute(
+            """
+            INSERT INTO users (id_user, email_user, password_user, favorite_beer_flavor, budget_user)
+            VALUES(:id_user, :email_user, :password_user, :favorite_beer_flavor, :budget_user)
             """, data)
             dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
@@ -21,9 +22,11 @@ class SQLiteUser(interfaceUser.InterfaceUser):
     def modify_user(self, data: dict) -> bool:
         try:
             curseur = dbConnexion.DBConnexion().connexion.cursor()
-            curseur.execute("""
-            UPDATE users SET id_user=:id_user, mail_user=:mail_user, password_user=:password_user,
-            favorite_beer_flavor=:favorite_beer_flavor, budget_user=:budget_user WHERE id_user=:id_user AND password_user=:password_user
+            curseur.execute(
+            """
+            UPDATE users SET id_user=:id_user, email_user=:email_user, password_user=:password_user,
+                             favorite_beer_flavor=:favorite_beer_flavor, budget_user=:budget_user 
+            WHERE id_user=:id_user AND password_user=:password_user
             """, data)
             dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
@@ -47,7 +50,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
     def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
         curseur = dbConnexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT * FROM users WHERE id_user=:id_user AND password_user=:password_user",
-                        {"id_user": id, "password_user": password_sale_hashe})
+                        {"id_user": id_user, "password_user": password_sale_hashe})
         row = curseur.fetchone()
         curseur.close()
         if row is not None:

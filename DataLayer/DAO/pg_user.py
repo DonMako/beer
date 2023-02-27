@@ -8,8 +8,8 @@ class PGUser(interfaceUser.InterfaceUser):
     def create_user(self, data: dict) -> bool:
         try:
             with dbConnexion.DBConnexion().connexion.cursor() as curseur:
-                curseur.execute("INSERT INTO users (id, password, favorite_beer_flavor, budget) VALUES((%s), (%s), (%s), (%s), (%s), (%s), (%s))",
-                                (data['id'], data['password'], data['favorite_beer_flavor'], data['budget']))
+                curseur.execute("INSERT INTO users (id, email, password, favorite_beer_flavor, budget) VALUES((%s), (%s), (%s), (%s), (%s), (%s), (%s))",
+                                (data['id'], data['email'], data['password'], data['favorite_beer_flavor'], data['budget']))
             return True
         except Exception as e:
             print(e)
@@ -18,24 +18,28 @@ class PGUser(interfaceUser.InterfaceUser):
     def modify_user(self, data: dict) -> bool:
         try:
             with dbConnexion.DBConnexion().connexion.cursor() as curseur:
-                curseur.execute("UPDATE users SET id=(%s), password=(%s), favorite_beer_flavor=(%s), budget=(%s) WHERE id=(%s) AND password=(%s)",
-                                (data['id'], data['password'], data['favorite_beer_flavor'], data['budget']))
+                curseur.execute(
+                """
+                UPDATE users SET id_user=(%s), email_user=(%s), password_user=(%s), favorite_beer_flavor=(%s), budget_user=(%s) 
+                WHERE id_user=(%s) AND password_user=(%s)
+                """,
+                (data['id_user'], data['email_user'], data['password_user'], data['favorite_beer_flavor'], data['budget_user']))
             return True
         except Exception as e:
             print(e)
             return False
     
-    def delete_user(self, id: str, password: str) -> bool:
+    def delete_user(self, id_user: str, password_user: str) -> bool:
         try:
             with dbConnexion.DBConnexion().connexion.cursor() as curseur:
-                curseur.execute("DELETE FROM users WHERE id=(%s) AND password=(%s)", (id, password,))
+                curseur.execute("DELETE FROM users WHERE id_user=(%s) AND password_user=(%s)", (id_user, password_user,))
             return True
         except Exception as e:
             print(e)
             return False
         
-    def connexion_user(self, nom_utilisateur: str, mdp_sale_hashe: str) -> dict:
+    def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
         with dbConnexion.DBConnexion().connexion.cursor() as curseur:
-            row = curseur.execute("SELECT * FROM agents WHERE nom_utilisateur=(%s) AND mot_de_passe=(%s)",
-                                  (nom_utilisateur, mdp_sale_hashe)).fetchone()
+            row = curseur.execute("SELECT * FROM agents WHERE id_user=(%s) AND password_user=(%s)",
+                                  (id_user, password_sale_hashe)).fetchone()
         return row
