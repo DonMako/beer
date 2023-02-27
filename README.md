@@ -8,8 +8,8 @@ The BIERE project (for "Bacchus : Identification Et Récupération des Établiss
 
 The user of the BIERE project must connect to his account or create one.
 The user can then access all the features allowed by the application:
-- change information on his/her account;
-- 
+- change information on his/her account or delete it;
+- use the main deature of the application: the localisation of pubs.
 
 ### If the user chooses to use the main feature of the application :
 
@@ -49,5 +49,7 @@ Here are some ideas that we want to implement to increase the utility of the pro
 ## Authors
 
 BERTAIL Aurélien
+
 ÉVAIN Manon
+
 MACAUX Lucas
