@@ -3,5 +3,3 @@
 psycopg==3.1.8
 PyInquirer==1.0.3
 python-dotenv==1.0.0
-# Editable install with no version control (requests==2.22.0)
--e /usr/lib/python3/dist-packages/requests-2.22.0.egg-info
