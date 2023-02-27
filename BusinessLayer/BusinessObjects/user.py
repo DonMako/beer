@@ -16,7 +16,7 @@ class User(object):
         return user
     
     @property
-    def email_user(self):
+    def id_user(self):
         return self.__id_user
 
     @property
@@ -24,13 +24,13 @@ class User(object):
         return self.__email_user
     
     @property
-    def email_user(self):
+    def password_user(self):
         return self.__password_user
     
     @property
-    def email_user(self):
+    def favorite_beer_flavor(self):
         return self.__favorite_beer_flavor
     
     @property
-    def email_user(self):
+    def budget_user(self):
         return self.__budget_user
