@@ -35,21 +35,27 @@ The application displays finally the name of the corresponding pubs.
 
 ```mermaid
 classDiagram
-    Bar <|-- Beer
+    Pub -- Menu
+    Menu -- Beer
     class User{
-      +String id
-      +String password
+      +String id_user
+      +String email_user
+      +String password_user
       +String favoriteBeerType
       +Float budget
     }
     class Beer{
       +String name_beer
-      +String type
-      +String price
+      +String type_beer
     }
-    class Bar{
-      +String name_bar
-      +String localisation
+    class Menu{
+      +String name_pub
+      +String name_beer
+      +String price_beer
+    }
+    class Pub{
+      +String name_pub
+      +String localisation_pub
     }
 ```
 
