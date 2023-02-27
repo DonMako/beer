@@ -11,8 +11,8 @@ The BIERE project (for "Bacchus : Identification Et Récupération des Établiss
 If you have Python 3 and pip installed on your system, you can install and execute the BIERE project from its sources:
 
 ```
-git clone https://github.com/maxence-lagalle/PSyCoQuAC.git
-cd PSyCoQuAC
+git clone https://github.com/DonMako/beer.git
+cd beer
 pip install -r requirements.txt
 python main.py
 ```
