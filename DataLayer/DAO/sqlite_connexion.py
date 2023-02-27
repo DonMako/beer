@@ -1,10 +1,10 @@
-import sqlite3
 from DataLayer.DAO.interface_connexion import InterfaceConnexion
+import sqlite3
 
 
 class SQLiteConnexion(InterfaceConnexion):
 
-    def open_connexion(self, host):
+    def open_connexion(self, host, port, database, user, password):
         try:
             connexion = sqlite3.connect(host)
             connexion.row_factory = sqlite3.Row

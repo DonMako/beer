@@ -1,6 +1,6 @@
+from DataLayer.DAO.interface_connexion import InterfaceConnexion
 import psycopg as pg
 from psycopg.rows import dict_row
-from DataLayer.DAO.interface_connexion import InterfaceConnexion
 
 
 class PGConnexion(InterfaceConnexion):
