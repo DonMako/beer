@@ -26,7 +26,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
             """
             UPDATE users SET id_user=:id_user, email_user=:email_user, password_user=:password_user,
                              favorite_beer_flavor=:favorite_beer_flavor, budget_user=:budget_user 
-            WHERE id_user=:id_user AND password_user=:password_user
+            WHERE id_user=:id_user, password_user=:password_user
             """, data)
             dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
@@ -35,11 +35,10 @@ class SQLiteUser(interfaceUser.InterfaceUser):
             print(e)
             return False
 
-    def delete_user(self, id_user: int, password_user: str) -> bool:
+    def delete_user(self, data: dict) -> bool:
         try:
             curseur = dbConnexion.DBConnexion().connexion.cursor()
-            curseur.execute("DELETE FROM users WHERE id_user=:id_user AND password_user=:password_user",
-                            {"id_user": id_user, "password_user": password_user})
+            curseur.execute("DELETE FROM users WHERE id_user=:id_user, password_user=:password_user", data)
             dbConnexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
@@ -49,7 +48,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
 
     def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
         curseur = dbConnexion.DBConnexion().connexion.cursor()
-        curseur.execute("SELECT * FROM users WHERE id_user=:id_user AND password_user=:password_user",
+        curseur.execute("SELECT * FROM users WHERE id_user=:id_user, password_user=:password_user",
                         {"id_user": id_user, "password_user": password_sale_hashe})
         row = curseur.fetchone()
         curseur.close()
@@ -59,3 +58,14 @@ class SQLiteUser(interfaceUser.InterfaceUser):
         else:
             data = None
         return data
+    
+    def get_email_user(self, data: dict) -> str:
+        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur.execute("SELECT email_user FROM users WHERE id_user=:id_user, password_user=:password_user", data)
+        result = curseur.fetchone()
+        curseur.close()
+        if result is not None:
+            email_user = result
+        else:
+            email_user = None
+        return email_user

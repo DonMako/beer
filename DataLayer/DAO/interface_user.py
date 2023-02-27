@@ -11,9 +11,13 @@ class InterfaceUser(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def delete_user(self, id_user: int, password_user: str) -> bool:
+    def delete_user(self, data: dict) -> bool:
         raise NotImplementedError
 
     @abstractmethod
     def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
+        raise NotImplementedError
+    
+    @abstractmethod
+    def get_email_user(self, data: dict) -> str:
         raise NotImplementedError

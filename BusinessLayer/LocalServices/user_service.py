@@ -16,5 +16,9 @@ class UserService(metaclass=Singleton):
         return daoUser.DAOUser().modify_user(user_to_modify)
 
     @staticmethod
-    def delete_user(user_to_delete: int) -> bool:
+    def delete_user(user_to_delete: User) -> bool:
         return daoUser.DAOUser().delete_user(user_to_delete)
+    
+    @staticmethod
+    def get_email_user(user: User) -> str:
+        return daoUser.DAOUser().get_email_user(user)

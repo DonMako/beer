@@ -23,8 +23,8 @@ class DAOUser(metaclass=Singleton):
     def modify_user(self, user_to_modify: User) -> bool:
         return self.__interface.modify_user(user_to_modify.as_dict())
 
-    def delete_user(self, id_user: int) -> bool:
-        return self.__interface.delete_user(id_user)
+    def delete_user(self, user_to_delete: User) -> bool:
+        return self.__interface.delete_user(user_to_delete.as_dict())
 
     def connexion_user(self, id_user: str, password_user: str) -> User:
         password_user_sale_hashe = self.__saler_hasher_mdp(password_user)
@@ -33,3 +33,6 @@ class DAOUser(metaclass=Singleton):
             user = User.from_dict(data)
             return user
         raise ConnectionRefusedError
+    
+    def get_email_user(self, user: User) -> str:
+        return self.__interface.get_email_user(user.as_dict())
