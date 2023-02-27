@@ -1,10 +1,11 @@
 class User(object):
-    id: str
-    mail: str
-    password: str
+    id_user: str
+    mail_user: str
+    password_user: str
     favorite_beer_flavor: str
-    budget: float
+    budget_user: float
 
     def as_dict(self) -> dict:
-        data = {"id": self.id, "mail": self.mail, "password": self.password, "favorite_beer_flavor": self.favorite_beer_flavor, "budget": self.budget}
-        return
+        data = {"id_user": self.id_user, "mail_user": self.mail_user, "password_user": self.password_user,
+                "favorite_beer_flavor": self.favorite_beer_flavor, "budget_user": self.budget_user}
+        return data
