@@ -10,7 +10,7 @@ class StartView(abstractView.AbstractView):
 
     def make_choice(self):
         answers = prompt(self.__questions)
-        if str.upper(answers['choice'][0]) == "F":
+        if str.upper(answers['choice'][0]) == "C":
             return connexionView.ConnexionView()
         elif str.upper(answers['choice'][0]) == "N":
             return newUserView.NewUserView()
