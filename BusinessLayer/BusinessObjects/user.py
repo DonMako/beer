@@ -1,36 +1,16 @@
+import attr
+
+
+@attr.s
 class User(object):
-    __id_user: str
-    __email_user: str
-    __password_user: str
-    __favorite_beer_flavor: str
-    __budget_user: float
+
+    id_user: str = attr.ib(converter=str, on_setattr=attr.setters.convert)
+    email_user: str = attr.ib(converter=str, on_setattr=attr.setters.convert)
+    password_user: str = attr.ib(converter=str, on_setattr=attr.setters.convert)
+    favorite_beer_flavor: str = attr.ib(converter=str, on_setattr=attr.setters.convert)
+    budget_user: float = attr.ib(converter=float, on_setattr=attr.setters.convert)
 
     def as_dict(self) -> dict:
         data = {"id_user": self.id_user, "email_user": self.email_user, "password_user": self.password_user,
                 "favorite_beer_flavor": self.favorite_beer_flavor, "budget_user": self.budget_user}
         return data
-    
-    @staticmethod
-    def from_dict(data: dict):
-        user = User(data["id_user"], data["email_user"], data["password_user"], data["favorite_beer_flavor"], data["budget_user"])
-        return user
-    
-    @property
-    def id_user(self):
-        return self.__id_user
-
-    @property
-    def email_user(self):
-        return self.__email_user
-    
-    @property
-    def password_user(self):
-        return self.__password_user
-    
-    @property
-    def favorite_beer_flavor(self):
-        return self.__favorite_beer_flavor
-    
-    @property
-    def budget_user(self):
-        return self.__budget_user

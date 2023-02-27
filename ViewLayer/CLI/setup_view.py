@@ -10,8 +10,11 @@ import ViewLayer.CLI.menu as menuView
 class SetupView(abstractView.AbstractView):
     def __init__(self, base_path) -> None:
         self.__base_path = base_path
+        self.__first_try = True
+        self.__choix_installation = None
         self.__questions = [{'type': 'list', 'name': 'new_installation', 'message': 'What do you want to do ?',
-                             'choices': ["1) Create a new BIERE installation","2) Connect to an existing BIERE installation"], 'default': '1'},
+                             'choices': ["1) Create a new BIERE installation","2) Connect to an existing BIERE installation"], 'default': '1',
+                             'filter': self.__install_filter, 'when': lambda ans: self.__first_try},
                             {'type': 'list', 'name': 'engine', 'message': 'The database engine to use :',
                              'choices': ["PostgreSQL", "SQLite"], 'default': 'PostgreSQL'},
                             {'type': 'input', 'name': 'host', 'message': "What is the database path/host?"},]
@@ -20,6 +23,13 @@ class SetupView(abstractView.AbstractView):
                                {'type': 'input', 'name': 'id_user', 'message': "User's id to connect to the database :"
                                                                          "\n(must have the CREATE/SELECT/INSERT/UPDATE/DELETE privileges)"},
                                {'type': 'password', 'name': 'password_user', 'message': 'Password to connect to the database :'},]
+
+    @staticmethod
+    def __install_filter(val) -> bool:
+        if val == "1":
+            return True
+        if val == "2":
+            return False
 
     def make_choice(self):
         answers = {}

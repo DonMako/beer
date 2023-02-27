@@ -6,16 +6,16 @@ import ViewLayer.CLI.new_user_view as newUserView
 
 class StartView(abstractView.AbstractView):
     def __init__(self):
-        self.__questions = [{'type': 'list','name': 'choices', 'message': 'What do you want to do ?', 
+        self.__questions = [{'type': 'list','name': 'choice', 'message': 'What do you want to do ?', 
                              'choices': ['C) Connect', 'N) Create account', 'Q) Quit']}]
 
     def make_choice(self):
         answers = prompt(self.__questions)
-        if str.upper(answers['choices'][0]) == "C":
+        if str.upper(answers['choice'][0]) == "C":
             return connexionView.ConnexionView()
-        elif str.upper(answers['choices'][0]) == "N":
+        elif str.upper(answers['choice'][0]) == "N":
             return newUserView.NewUserView()
-        elif str.upper(answers['choices'][0]) == "Q":
+        elif str.upper(answers['choice'][0]) == "Q":
             return None
         else:
             return StartView()
