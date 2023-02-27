@@ -4,6 +4,7 @@ import ViewLayer.CLI.session as session
 
 
 class SessionService(metaclass=Singleton):
+    
     @staticmethod
     def open_session(id_user, password_user):
         try:

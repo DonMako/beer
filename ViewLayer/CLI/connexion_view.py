@@ -7,6 +7,7 @@ import ViewLayer.CLI.session as session
 
 
 class ConnexionView(abstractView.AbstractView):
+    
     def __init__(self) -> None:
         self.__questions = [{'type': 'input', 'name': 'id_user', 'message': 'Username :'},
                             {'type': 'password', 'name': 'password_user', 'message': 'Password :'}]

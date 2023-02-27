@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class InterfaceUser(ABC):
+    
     @abstractmethod
     def create_user(self, data: dict) -> bool:
         raise NotImplementedError

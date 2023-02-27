@@ -5,6 +5,7 @@ import ViewLayer.CLI.new_user_view as newUserView
 
 
 class StartView(abstractView.AbstractView):
+    
     def __init__(self):
         self.__questions = [{'type': 'list','name': 'choice', 'message': 'What do you want to do ?', 
                              'choices': ['C) Connect', 'N) Create account', 'Q) Quit']}]

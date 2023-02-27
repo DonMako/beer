@@ -8,6 +8,7 @@ import ViewLayer.CLI.start_view as startView
 
 
 class MenuView(abstractView.AbstractView):
+    
     def __init__(self) -> None:
         self.__questions = [{'type': 'list', 'name': 'choice', 'message': 'What do you want to do ?',
                              'choices': ['F) Find bars', 'M) Modify my profile', 'Q) Disconnect']}]

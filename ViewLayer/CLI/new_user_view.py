@@ -7,6 +7,7 @@ import ViewLayer.CLI.session as session
 
 
 class NewUserView(abstractView.AbstractView):
+    
     def __init__(self) -> None:
         self.__questions = [{'type': 'input', 'name': 'id_user', 'message': 'Enter an id :'},
                             {'type': 'input', 'name': 'email_user', 'message': 'Enter a Gmail adress :'},

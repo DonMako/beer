@@ -7,6 +7,7 @@ from utils.singleton import Singleton
 
 
 class InterfaceFactory(metaclass=Singleton):
+    
     @staticmethod
     def get_interface(type_dao: str):
         if os.environ["BIERE_ENGINE"] == "SQLite":

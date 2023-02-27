@@ -3,6 +3,7 @@ from utils.singleton import Singleton
 
 
 class EMailService(metaclass=Singleton):
+    
     def send_email(email_user: str, info_changed: str):
         smtp_server = "smtp.gmail.com"
         port = 465

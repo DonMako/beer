@@ -33,6 +33,9 @@ The application displays finally the name of the corresponding pubs.
 
 ## Data structure
 
+The BIERE project leaves the choice of the database engine to the user.
+It is for the moment possible to use PostgreSQL or SQLite. 
+
 ```mermaid
 classDiagram
     Pub -- Menu

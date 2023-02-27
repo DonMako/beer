@@ -4,6 +4,7 @@ from utils.singleton import Singleton
 
 
 class UserService(metaclass=Singleton):
+    
     @staticmethod
     def create_user(id_user: str, email_user: str, password_user: str, favorite_beer_type: str, budget_user: float) -> bool:
         data_user = {'id_user': id_user, 'email_user': email_user, 'password_user': password_user,

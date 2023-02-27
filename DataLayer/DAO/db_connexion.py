@@ -4,6 +4,7 @@ from utils.singleton import Singleton
 
 
 class DBConnexion(metaclass=Singleton):
+    
     def __init__(self):
         self.__interface = factory.InterfaceFactory().get_interface("Connexion")
         self.__connexion = self.__interface.open_connexion(os.environ["BIERE_HOST"],
