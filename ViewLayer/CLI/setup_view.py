@@ -1,10 +1,10 @@
-from PyInquirer import prompt
-from DataLayer.DAO.db_connexion import DBConnexion
-from ViewLayer.CLI.abstract_view import AbstractView
-import ViewLayer.CLI.menu as mp
-from pathlib import Path
 import dotenv
 import os
+from PyInquirer import prompt
+from pathlib import Path
+from DataLayer.DAO.db_connexion import DBConnexion
+from ViewLayer.CLI.abstract_view import AbstractView
+from ViewLayer.CLI.menu import MenuView
 
 
 class SetupView(AbstractView):
@@ -12,36 +12,28 @@ class SetupView(AbstractView):
         self.__base_path = base_path
         self.__first_try = True
         self.__choix_installation = None
-        self.__questions = [{'type': 'list', 'name': 'nouvelle_installation', 'message': 'Que souhaitez-vous faire ?',
-                             'choices': ["Créer une nouvelle installation BIERE",
-                                         "Se connecter à une installation BIERE existante"],
-                             'default': 'Créer une nouvelle installation BIERE',
-                             'filter': self.__install_filter,
-                             'when': lambda ans: self.__first_try},
-                            {'type': 'list', 'name': 'engine', 'message': 'Quel est le moteur de '
-                                                                          'base de données à utiliser ?',
+        self.__questions = [{'type': 'list', 'name': 'new_installation', 'message': 'Que souhaitez-vous faire ?',
+                             'choices': ["1) Create a new BIERE installation","2) Connect to an existing BIERE installation"],
+                             'default': '1', 'filter': self.__install_filter, 'when': lambda ans: self.__first_try},
+                            {'type': 'list', 'name': 'engine', 'message': 'The database engine to use :',
                              'choices': ["PostgreSQL", "SQLite"], 'default': 'PostgreSQL'},
-                            {'type': 'input', 'name': 'host', 'message': "Quel est le chemin/l'hôte "
-                                                                         "de la base de données ?"},
-                            {'type': 'input', 'name': 'port', 'message': 'Quel est le port de connexion ?',
+                            {'type': 'input', 'name': 'host', 'message': "Quel est le chemin/l'hôte de la base de données ?"},
+                            {'type': 'input', 'name': 'port', 'message': 'Quel est le port de connexion ?', 
                              'when': lambda ans: ans['engine'] == 'PostgreSQL'},
-                            {'type': 'input', 'name': 'database', 'message': 'Quel est le nom de la base de données ?',
+                            {'type': 'input', 'name': 'database', 'message': "Database's name :", 
                              'when': lambda ans: ans['engine'] == 'PostgreSQL'},
-                            {'type': 'input', 'name': 'user', 'message': "Quel est le nom d'utilisateur permettant de "
-                                                                         "se connecter à la base de données\n(il doit "
-                                                                         "posséder les privilèges CREATE, SELECT, "
-                                                                         "INSERT, UPDATE et DELETE) ?",
+                            {'type': 'input', 'name': 'user', 'message': "User's name to connect to the database :"
+                                                                         "\n(must have the CREATE/SELECT/INSERT/UPDATE/DELETE privileges)",
                              'when': lambda ans: ans['engine'] == 'PostgreSQL'},
-                            {'type': 'password', 'name': 'password', 'message': 'Quel est le mot de passe '
-                                                                                'de connexion à la base de données ?',
+                            {'type': 'password', 'name': 'password', 'message': 'Password to connect to the database :',
                              'when': lambda ans: ans['engine'] == 'PostgreSQL'},
                             ]
 
     @staticmethod
     def __install_filter(val) -> bool:
-        if val == "Créer une nouvelle installation BIERE":
+        if val == '1':
             return True
-        if val == "Se connecter à une installation BIERE existante":
+        if val == '2':
             return False
 
     def make_choice(self):
@@ -50,7 +42,7 @@ class SetupView(AbstractView):
         while not connexion_ok:
             answers = prompt(self.__questions)
             if self.__first_try:
-                self.__choix_installation = answers['nouvelle_installation']
+                self.__choix_installation = answers['new_installation']
             Path(self.__base_path / "./.env").touch(exist_ok=True)
             dotenv_file = (self.__base_path / "./.env").resolve()
             dotenv.load_dotenv(dotenv_file, override=True)
@@ -70,7 +62,7 @@ class SetupView(AbstractView):
                 DBConnexion().connexion.cursor().close()
                 connexion_ok = True
             except ConnectionError:
-                print("Impossible d'établir la connexion à la base de données. Veuillez resaisir les paramètres.")
+                print("Connexion to the database impossible. Please enter again the parameters.")
                 self.__first_try = False
                 connexion_ok = False
                 DBConnexion.clear()
@@ -79,15 +71,12 @@ class SetupView(AbstractView):
                 except FileNotFoundError:
                     pass
         if self.__choix_installation:
-            prompt_confirm = [{'type': 'confirm', 'name': 'confirmer', 'message': "Confirmez-vous le lancement d'une "
-                                                                                  "nouvelle installation ?\nTOUTES LES "
-                                                                                  "INFORMATIONS RELATIVES A UNE "
-                                                                                  "INSTALLATION PRECEDENTE DANS LA "
-                                                                                  "MEME "
-                                                                                  "BASE SERONT PERDUES !",
+            prompt_confirm = [{'type': 'confirm', 'name': 'confirm', 
+                               'message': "Confirmation to launch a new installation ?"
+                                          "\nALL INFORMATION RELATIVE TO A PREVIOUS INSTALLATION IN THE SAME DATABASE WILL BE LOST !",
                                'default': False}]
             confirm = prompt(prompt_confirm)
-            if confirm['confirmer']:
+            if confirm['confirm']:
                 script_file = "./sql/" + str.lower(answers['engine']) + ".sql"
                 script_path = (self.__base_path / script_file).resolve()
                 curseur = DBConnexion().connexion.cursor()
@@ -108,5 +97,5 @@ class SetupView(AbstractView):
         else:
             succes = True
         if succes:
-            return mp.MenuPrincipalView()
+            return MenuView()
         return SetupView(self.__base_path)
