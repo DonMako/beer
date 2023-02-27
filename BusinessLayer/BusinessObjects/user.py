@@ -14,3 +14,8 @@ class User(object):
         data = {"id_user": self.id_user, "email_user": self.email_user, "password_user": self.password_user,
                 "favorite_beer_flavor": self.favorite_beer_flavor, "budget_user": self.budget_user}
         return data
+    
+    @staticmethod
+    def from_dict(data: dict):
+        user = User(data["id_user"], data["email_user"], data["password_user"], data["favorite_beer_flavor"], data["budget_user"])
+        return user
