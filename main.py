@@ -16,5 +16,4 @@ if __name__ == '__main__':
     while actual_view:
         with open(border_path, 'r', encoding="utf-8") as border:
             print(border.read())
-            actual_view.display_info()
             actual_view = actual_view.make_choice()
