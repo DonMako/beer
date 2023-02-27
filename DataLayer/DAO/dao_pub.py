@@ -10,4 +10,4 @@ class DAOPub(metaclass=Singleton):
         self.__interface = interfaceFactory.InterfaceFactory.get_interface("Pub")
 
     def get_list_pubs(self, localisation: str) -> List:
-        return self.__interface.modify_user(localisation)
+        return self.__interface.get_list_pubs(localisation)

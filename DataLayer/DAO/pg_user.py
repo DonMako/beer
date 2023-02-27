@@ -1,4 +1,3 @@
-from typing import List
 import DataLayer.DAO.db_connexion as dbConnexion
 import DataLayer.DAO.interface_user as interfaceUser
 
