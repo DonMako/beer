@@ -59,7 +59,7 @@ class PGUser(interface_user.InterfaceUser):
                                          (data["id_user"], data["password_user"])).fetchone()
         return favorite_beer_type
     
-    def get_budget_user(self, data: dict) -> str:
+    def get_budget_user(self, data: dict) -> float:
         with db_connexion.DBConnexion().connexion.cursor() as curseur:
             budget_user = curseur.execute("SELECT budget_user FROM users WHERE id_user=(%s) AND password_user=(%s)",
                                          (data["id_user"], data["password_user"])).fetchone()

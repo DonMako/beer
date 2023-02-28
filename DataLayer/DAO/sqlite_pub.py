@@ -17,14 +17,13 @@ class SQLitePub(interface_pub.InterfacePub):
             answer.append(data)
         return answer
     
-    def get_pub_beer(self, name_pub: str) -> List:
+    def get_name_pub(self, data: dict) -> float:
         curseur = db_connexion.DBConnexion().connexion.cursor()
-        curseur.execute("SELECT name_beer, price_beer FROM menus WHERE name_pub=:name_pub", {"name_pub": name_pub})
-        rows = curseur.fetchall()
+        curseur.execute("SELECT name_pub FROM pubs WHERE name_pub=:name_pub", data)
+        result = curseur.fetchone()
         curseur.close()
-        answer = []
-        for row in rows:
-            data = dict(zip(row.keys(), row))
-            data = self.__sqlite_to_dao(data)
-            answer.append(data)
-        return answer
+        if result is not None:
+            budget_user = result
+        else:
+            budget_user = None
+        return budget_user

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from BusinessLayer.BusinessObjects.pub import Pub
 from typing import List
 
 
@@ -9,5 +10,5 @@ class InterfacePub(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def get_pub_beer(self, name_pub: str) -> List:
+    def get_name_pub(self, pub: Pub) -> List:
         raise NotImplementedError

@@ -28,5 +28,5 @@ class InterfaceUser(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def get_budget_user(self, data: dict) -> str:
+    def get_budget_user(self, data: dict) -> float:
         raise NotImplementedError
