@@ -10,5 +10,5 @@ class PubService(metaclass=Singleton):
         return dao_pub.DAOPub().get_pubs_localisation(localisation)
     
     @staticmethod
-    def get_pub_beer(name_pub: str) -> List:
-        return dao_pub.DAOPub().get_pub_beer(name_pub)
+    def get_name_pub(name_pub: str) -> List:
+        return dao_pub.DAOPub().get_name_pub(name_pub)

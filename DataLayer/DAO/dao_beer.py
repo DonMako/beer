@@ -1,5 +1,4 @@
 import DataLayer.DAO.interface_factory as interface_factory
-from hashlib import sha512
 from typing import List
 from utils.singleton import Singleton
 

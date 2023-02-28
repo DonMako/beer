@@ -1,5 +1,4 @@
 import DataLayer.DAO.interface_factory as interface_factory
-from hashlib import sha512
 from typing import List
 from utils.singleton import Singleton
 
@@ -12,5 +11,5 @@ class DAOPub(metaclass=Singleton):
     def get_pubs_localisation(self, localisation: str) -> List:
         return self.__interface.get_pubs_localisation(localisation)
     
-    def get_pub_beer(self, name_pub: str) -> List:
-        return self.__interface.get_pub_beer(name_pub)
+    def get_name_pub(self, name_pub: str) -> List:
+        return self.__interface.get_name_pub(name_pub)
