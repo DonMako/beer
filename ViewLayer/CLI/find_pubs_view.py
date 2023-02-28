@@ -23,7 +23,7 @@ class FindPubsView(abstract_view.AbstractView):
         research = True
         while research:
             answers = prompt(self.__questions)
-            list_pubs_localised = pub_service.PubService.get_pubs_localisation(answers["place"])
+            list_pubs_localised = pub_service.PubService.get_pubs_city(answers["place"])
             list_beers_pubs_localised = []
             for pub in list_pubs_localised:
                 name_pub = pub_service.PubService.get_name_pub(pub)
@@ -36,13 +36,20 @@ class FindPubsView(abstract_view.AbstractView):
                 for beer in list(dict_pub.values()):
                     type_beer = beer_service.BeerService.get_type_beer(beer)
                     if type_beer == favorite_beer_type:
-                        list_pubs_localised_type.append(list(dict_pub.key())[0])
+                        list_pubs_localised_type.append(dict_pub)
+            budget_user = user_service.UserService.get_budget_user(self.__user)
             list_pubs_localised_type_budget = []
             for dict_pub in list_beers_pubs_localised:
                 for beer in list(dict_pub.values()):
-                    type_beer = beer_service.BeerService.get_price_beer(beer)
-                    if type_beer == favorite_beer_type:
-                        list_pubs_localised_type_budget.append(list(dict_pub.key())[0])
+                    price_beer = beer_service.BeerService.get_price_beer(beer)
+                    if price_beer == budget_user:
+                        list_pubs_localised_type_budget.append(dict_pub)
+            result = []
+            for dict_pub in list_pubs_localised_type_budget:
+                adress = pub_service.PubService.get_adress_pub(list(dict_pub.keys())[0])
+                result.append(adress)
+            for elt in result:
+                print(elt) 
             answer_research = prompt(self.__research_prompt)
             research = str.upper(answer_research['choices'][0]) == "Y"
         return menu_view.MenuView()
