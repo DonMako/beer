@@ -1,8 +1,8 @@
-import DataLayer.DAO.interface_connexion as interfaceConnexion
+import DataLayer.DAO.interface_connexion as interface_connexion
 import sqlite3
 
 
-class SQLiteConnexion(interfaceConnexion.InterfaceConnexion):
+class SQLiteConnexion(interface_connexion.InterfaceConnexion):
 
     def open_connexion(self, host, port, database, user, password):
         try:

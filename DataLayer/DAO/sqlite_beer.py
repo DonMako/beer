@@ -1,12 +1,12 @@
-import DataLayer.DAO.db_connexion as dbConnexion
-import DataLayer.DAO.interface_beer as interfaceBeer
+import DataLayer.DAO.db_connexion as db_connexion
+import DataLayer.DAO.interface_beer as interface_beer
 from typing import List
 
 
-class SQLiteBeer(interfaceBeer.InterfaceBeer):
+class SQLiteBeer(interface_beer.InterfaceBeer):
 
     def get_list_beers(self, type_beer: str) -> List:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT * FROM beers WHERE type_beer=:type_beer", {"type_beer": type_beer})
         row = curseur.fetchone()
         curseur.close()

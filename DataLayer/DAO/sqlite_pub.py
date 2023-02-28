@@ -1,18 +1,18 @@
-import DataLayer.DAO.db_connexion as dbConnexion
-import DataLayer.DAO.interface_pub as interfacePub
+import DataLayer.DAO.db_connexion as db_connexion
+import DataLayer.DAO.interface_pub as interface_pub
 from typing import List
 
 
-class SQLitePub(interfacePub.InterfacePub):
+class SQLitePub(interface_pub.InterfacePub):
 
-    def get_list_pubs(self, localisation: str) -> List:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+    def get_pubs_localisation(self, localisation: str) -> List:
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT * FROM pubs WHERE localisation=:localisation", {"localisation": localisation})
-        row = curseur.fetchone()
+        rows = curseur.fetchall()
         curseur.close()
-        if row is not None:
+        answer = []
+        for row in rows:
             data = dict(zip(row.keys(), row))
             data = self.__sqlite_to_dao(data)
-        else:
-            data = None
-        return data
+            answer.append(data)
+        return answer

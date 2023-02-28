@@ -1,12 +1,12 @@
-import BusinessLayer.LocalServices.session_service as sessionService
-import BusinessLayer.LocalServices.user_service as userService
+import BusinessLayer.LocalServices.session_service as session_service
+import BusinessLayer.LocalServices.user_service as user_service
 from PyInquirer import prompt
-import ViewLayer.CLI.abstract_view as abstractView
-import ViewLayer.CLI.menu as menuView
+import ViewLayer.CLI.abstract_view as abstract_view
+import ViewLayer.CLI.menu as menu_view
 import ViewLayer.CLI.session as session
 
 
-class NewUserView(abstractView.AbstractView):
+class NewUserView(abstract_view.AbstractView):
     
     def __init__(self) -> None:
         self.__questions = [{'type': 'input', 'name': 'id_user', 'message': 'Enter an id :'},
@@ -17,10 +17,10 @@ class NewUserView(abstractView.AbstractView):
 
     def make_choice(self):
         answers = prompt(self.__questions)
-        succes = userService.UserService().create_user(answers['id_user'], answers['email_user'], answers['password_user'], 
+        succes = user_service.UserService().create_user(answers['id_user'], answers['email_user'], answers['password_user'], 
                                            answers['favorite_beer_type'], answers['budget_user'])
         if not(succes):
             print("Error")
             return NewUserView()
-        session.Session().user = sessionService.SessionService().open_session(answers['id_user'], answers['password_user'])
-        return menuView.MenuView()
+        session.Session().user = session_service.SessionService().open_session(answers['id_user'], answers['password_user'])
+        return menu_view.MenuView()

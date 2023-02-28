@@ -1,18 +1,18 @@
-import DataLayer.DAO.db_connexion as dbConnexion
-import DataLayer.DAO.interface_user as interfaceUser
+import DataLayer.DAO.db_connexion as db_connexion
+import DataLayer.DAO.interface_user as interface_user
 
 
-class SQLiteUser(interfaceUser.InterfaceUser):
+class SQLiteUser(interface_user.InterfaceUser):
 
     def create_user(self, data: dict) -> bool:
         try:
-            curseur = dbConnexion.DBConnexion().connexion.cursor()
+            curseur = db_connexion.DBConnexion().connexion.cursor()
             curseur.execute(
             """
             INSERT INTO users (id_user, email_user, password_user, favorite_beer_type, budget_user)
             VALUES(:id_user, :email_user, :password_user, :favorite_beer_type, :budget_user)
             """, data)
-            dbConnexion.DBConnexion().connexion.commit()
+            db_connexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -21,14 +21,14 @@ class SQLiteUser(interfaceUser.InterfaceUser):
 
     def modify_user(self, data: dict) -> bool:
         try:
-            curseur = dbConnexion.DBConnexion().connexion.cursor()
+            curseur = db_connexion.DBConnexion().connexion.cursor()
             curseur.execute(
             """
             UPDATE users SET id_user=:id_user, email_user=:email_user, password_user=:password_user,
                              favorite_beer_type=:favorite_beer_type, budget_user=:budget_user 
             WHERE id_user=:id_user, password_user=:password_user
             """, data)
-            dbConnexion.DBConnexion().connexion.commit()
+            db_connexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -37,9 +37,9 @@ class SQLiteUser(interfaceUser.InterfaceUser):
 
     def delete_user(self, data: dict) -> bool:
         try:
-            curseur = dbConnexion.DBConnexion().connexion.cursor()
+            curseur = db_connexion.DBConnexion().connexion.cursor()
             curseur.execute("DELETE FROM users WHERE id_user=:id_user, password_user=:password_user", data)
-            dbConnexion.DBConnexion().connexion.commit()
+            db_connexion.DBConnexion().connexion.commit()
             curseur.close()
             return True
         except Exception as e:
@@ -47,7 +47,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
             return False
 
     def connexion_user(self, id_user: str, password_sale_hashe: str) -> dict:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT * FROM users WHERE id_user=:id_user, password_user=:password_user",
                         {"id_user": id_user, "password_user": password_sale_hashe})
         row = curseur.fetchone()
@@ -60,7 +60,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
         return data
     
     def get_email_user(self, data: dict) -> str:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT email_user FROM users WHERE id_user=:id_user, password_user=:password_user", data)
         result = curseur.fetchone()
         curseur.close()
@@ -71,7 +71,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
         return email_user
     
     def get_favorite_beer_type(self, data: dict) -> str:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT favorite_beer_type FROM users WHERE id_user=:id_user, password_user=:password_user", data)
         result = curseur.fetchone()
         curseur.close()
@@ -82,7 +82,7 @@ class SQLiteUser(interfaceUser.InterfaceUser):
         return favorite_beer_type
     
     def get_budget_user(self, data: dict) -> str:
-        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT budget_user FROM users WHERE id_user=:id_user, password_user=:password_user", data)
         result = curseur.fetchone()
         curseur.close()

@@ -1,9 +1,9 @@
-import DataLayer.DAO.interface_connexion as interfaceConnexion
+import DataLayer.DAO.interface_connexion as interface_connexion
 import psycopg as pg
 from psycopg.rows import dict_row
 
 
-class PGConnexion(interfaceConnexion.InterfaceConnexion):
+class PGConnexion(interface_connexion.InterfaceConnexion):
 
     def open_connexion(self, host, port, database, user, password):
         try:

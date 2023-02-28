@@ -1,14 +1,14 @@
 from BusinessLayer.BusinessObjects.user import User
-import BusinessLayer.LocalServices.user_service as userService
+import BusinessLayer.LocalServices.user_service as user_service
 from PyInquirer import prompt
-import ViewLayer.CLI.abstract_view as abstractView
-import ViewLayer.CLI.email_service as emailService
-import ViewLayer.CLI.menu as menuView
+import ViewLayer.CLI.abstract_view as abstract_view
+import ViewLayer.CLI.email_service as email_service
+import ViewLayer.CLI.menu as menu_view
 import ViewLayer.CLI.session as session
-import ViewLayer.CLI.start_view as startView
+import ViewLayer.CLI.start_view as start_view
 
 
-class ModifyUserView(abstractView.AbstractView):
+class ModifyUserView(abstract_view.AbstractView):
     
     def __init__(self, user: User = None) -> None:
         if user is None:
@@ -33,36 +33,36 @@ class ModifyUserView(abstractView.AbstractView):
                     prompt_password = [{'type': 'input', 'name': 'password_user', 'message': "New password :"}]
                     answer = prompt(prompt_password)
                     self.__user.password_user = answer['password']
-                    succes = userService.UserService().modify_user(self.__user)
+                    succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = userService.UserService().modify_user(self.__user)
-                        emailService.EMailService.send_email(email_adress, 'password')
+                        email_adress = user_service.UserService().modify_user(self.__user)
+                        email_service.EMailService.send_email(email_adress, 'password')
                 elif "F" in str.upper(answers0['choices'][0]):
                     prompt_favorite_beer_type = [{'type': 'input', 'name': 'favorite_beer_type', 'message': "New favorite beer flavor :"}]
                     answer = prompt(prompt_favorite_beer_type)
                     self.__user.favorite_beer_type = answer['favorite_beer_type']
-                    succes = userService.UserService().modify_user(self.__user)
+                    succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = userService.UserService().modify_user(self.__user)
-                        emailService.EMailService.send_email(email_adress, 'favorite beer type')
+                        email_adress = user_service.UserService().modify_user(self.__user)
+                        email_service.EMailService.send_email(email_adress, 'favorite beer type')
                 elif "B" in str.upper(answers0['choices'][0]):
                     prompt_budget = [{'type': 'input', 'name': 'budget_user', 'message': "New budget :",'filter': float}]
                     answer = prompt(prompt_budget)
                     self.__user.budget_user = answer['budget_user']
-                    succes = userService.UserService().modify_user(self.__user)
+                    succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = userService.UserService().modify_user(self.__user)
-                        emailService.EMailService.send_email(email_adress, 'budget')
+                        email_adress = user_service.UserService().modify_user(self.__user)
+                        email_service.EMailService.send_email(email_adress, 'budget')
                 elif "D" in str.upper(answers0['choices'][0]):
                     prompt_verif = [{'type': 'input', 'name': 'verif', 'message': "You are about to delete your account. Do you confirm to do this action ?"}]
                     answer = prompt(prompt_verif)
                     if answer:
-                        succes = userService.UserService().delete_user(self.__user)
-                        return startView.StartView()
+                        succes = user_service.UserService().delete_user(self.__user)
+                        return start_view.StartView()
                 else:
                     succes = True
                 if not succes:
                     print('Modification failed. Try again later.')
                 answer_continue = prompt(self.__continue_prompt)
                 modify = str.upper(answer_continue['choice'][0]) == "Y"
-        return menuView.MenuView()
+        return menu_view.MenuView()
