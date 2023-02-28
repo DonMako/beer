@@ -19,8 +19,7 @@ class ModifyUserView(abstract_view.AbstractView):
                                'message': 'What do you want to modify ?',
                                'choices': ['P) Password', "F) Favourite beers' type", 'B) Budget', 'D) Delete account']}]
         self.__main_prompt[0]['choices'].append('M) Menu')
-        self.__continue_prompt = [{'type': 'list', 'name': 'choices', 'message': 'Modify something else ?',
-                                   'choices': ['Y) Yes', 'N) No']}]
+        self.__continue_prompt = [{'type': 'list', 'name': 'choices', 'message': 'Modify something else ?', 'choices': ['Y) Yes', 'N) No']}]
 
     def make_choice(self):
         modify = True
@@ -64,5 +63,5 @@ class ModifyUserView(abstract_view.AbstractView):
                 if not succes:
                     print('Modification failed. Try again later.')
                 answer_continue = prompt(self.__continue_prompt)
-                modify = str.upper(answer_continue['choice'][0]) == "Y"
+                modify = str.upper(answer_continue['choices'][0]) == "Y"
         return menu_view.MenuView()
