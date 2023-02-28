@@ -13,7 +13,6 @@ class SQLitePub(interface_pub.InterfacePub):
         answer = []
         for row in rows:
             data = dict(zip(row.keys(), row))
-            data = self.__sqlite_to_dao(data)
             answer.append(data)
         return answer
     

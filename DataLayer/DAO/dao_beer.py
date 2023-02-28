@@ -10,3 +10,6 @@ class DAOBeer(metaclass=Singleton):
 
     def get_type_beer(self, beer: Beer) -> str:
         return self.__interface.get_type_beer(beer.as_dict)
+    
+    def get_price_beer(self, beer: Beer) -> str:
+        return self.__interface.get_price_beer(beer.as_dict)

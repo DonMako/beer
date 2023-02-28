@@ -13,6 +13,5 @@ class SQLiteMenu(interface_menu.InterfaceMenu):
             answer = []
             for row in rows:
                 data = dict(zip(row.keys(), row))
-                data = self.__sqlite_to_dao(data)
                 answer.append(data)
             return answer

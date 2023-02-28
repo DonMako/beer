@@ -5,5 +5,9 @@ from utils.singleton import Singleton
 class BeerService(metaclass=Singleton):
 
     @staticmethod
-    def get_list_beers(type_beer: str) -> str:
+    def get_type_beer(type_beer: str) -> str:
         return dao_beer.DAOBeer().get_list_beers(type_beer)
+    
+    @staticmethod
+    def get_price_beer(type_beer: str) -> str:
+        return dao_beer.DAOBeer().get_price_beer(type_beer)

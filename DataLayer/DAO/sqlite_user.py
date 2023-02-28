@@ -54,7 +54,6 @@ class SQLiteUser(interface_user.InterfaceUser):
         curseur.close()
         if row is not None:
             data = dict(zip(row.keys(), row))
-            data = self.__sqlite_to_dao(data)
         else:
             data = None
         return data

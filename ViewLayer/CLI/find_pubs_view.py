@@ -27,9 +27,15 @@ class FindPubsView(abstract_view.AbstractView):
             dict[name_pub] = menu_service.MenuService.get_pub_beers(name_pub)
             list_beers_pubs_localised.append(dict)
         favorite_beer_type = user_service.UserService.get_favorite_beer_type(self.__user)
-        list_beers_type_pubs_localised = []
+        list_pubs_localised_type = []
         for dict_pub in list_beers_pubs_localised:
             for beer in list(dict_pub.values()):
                 type_beer = beer_service.BeerService.get_type_beer(beer)
                 if type_beer == favorite_beer_type:
-                    list_beers_type_pubs_localised.append(list(dict_pub.key())[0])
+                    list_pubs_localised_type.append(list(dict_pub.key())[0])
+        list_pubs_localised_type_budget = []
+        for dict_pub in list_beers_pubs_localised:
+            for beer in list(dict_pub.values()):
+                type_beer = beer_service.BeerService.get_price_beer(beer)
+                if type_beer == favorite_beer_type:
+                    list_pubs_localised_type_budget.append(list(dict_pub.key())[0])
