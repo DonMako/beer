@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
+from BusinessLayer.BusinessObjects.beer import Beer
 
 
 class InterfacePub(ABC):
     
     @abstractmethod
-    def get_list_beers(self, localisation: str) -> List:
+    def get_type_beer(self, beer: Beer) -> str:
         raise NotImplementedError

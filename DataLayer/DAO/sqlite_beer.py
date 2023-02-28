@@ -5,9 +5,9 @@ from typing import List
 
 class SQLiteBeer(interface_beer.InterfaceBeer):
 
-    def get_list_beers(self, type_beer: str) -> List:
+    def get_list_beers(self, data: dict) -> List:
         curseur = db_connexion.DBConnexion().connexion.cursor()
-        curseur.execute("SELECT * FROM beers WHERE type_beer=:type_beer", {"type_beer": type_beer})
+        curseur.execute("SELECT type_beer FROM beers WHERE name_beer=:name_beer", {"name_beer": data["name_beer"]})
         row = curseur.fetchone()
         curseur.close()
         if row is not None:
