@@ -58,7 +58,8 @@ classDiagram
     }
     class Pub{
       +String name_pub
-      +String localisation_pub
+      +String adresse_pub
+      +String city_pub
     }
 ```
 
