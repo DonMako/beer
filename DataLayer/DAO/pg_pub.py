@@ -12,5 +12,5 @@ class PGPub(interface_pub.InterfacePub):
     
     def get_pub_beer(self, name_pub: str) -> List:
         with db_connexion.DBConnexion().connexion.cursor() as curseur:
-            rows = curseur.execute("SELECT name_beer,  FROM pubs WHERE localisation_pub=(%s)", (name_pub)).fetchall()
+            rows = curseur.execute("SELECT name_beer, price_beer FROM menus WHERE name_pub=(%s)", (name_pub)).fetchall()
         return rows

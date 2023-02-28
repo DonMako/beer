@@ -16,3 +16,15 @@ class SQLitePub(interface_pub.InterfacePub):
             data = self.__sqlite_to_dao(data)
             answer.append(data)
         return answer
+    
+    def get_pub_beer(self, name_pub: str) -> List:
+        curseur = db_connexion.DBConnexion().connexion.cursor()
+        curseur.execute("SELECT name_beer, price_beer FROM menus WHERE name_pub=:name_pub", {"name_pub": name_pub})
+        rows = curseur.fetchall()
+        curseur.close()
+        answer = []
+        for row in rows:
+            data = dict(zip(row.keys(), row))
+            data = self.__sqlite_to_dao(data)
+            answer.append(data)
+        return answer
