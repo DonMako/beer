@@ -5,6 +5,7 @@ import BusinessLayer.LocalServices.pub_service as pub_service
 import BusinessLayer.LocalServices.user_service as user_service
 from PyInquirer import prompt
 import ViewLayer.CLI.abstract_view as abstract_view
+import ViewLayer.CLI.menu_view as menu_view
 import ViewLayer.CLI.session as session
 
 
@@ -39,3 +40,4 @@ class FindPubsView(abstract_view.AbstractView):
                 type_beer = beer_service.BeerService.get_price_beer(beer)
                 if type_beer == favorite_beer_type:
                     list_pubs_localised_type_budget.append(list(dict_pub.key())[0])
+        return menu_view.MenuView()

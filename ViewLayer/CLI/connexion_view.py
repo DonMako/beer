@@ -2,7 +2,7 @@ from BusinessLayer.BusinessObjects.user import User
 import BusinessLayer.LocalServices.session_service as session_service
 from PyInquirer import prompt
 import ViewLayer.CLI.abstract_view as abstract_view
-import ViewLayer.CLI.menu as menu_view
+import ViewLayer.CLI.menu_view as menu_view
 import ViewLayer.CLI.session as session
 
 
