@@ -23,3 +23,7 @@ class UserService(metaclass=Singleton):
     @staticmethod
     def get_email_user(user: User) -> str:
         return daoUser.DAOUser().get_email_user(user)
+    
+    @staticmethod
+    def get_favorite_beer_type(user: User) -> str:
+        return daoUser.DAOUser().get_favorite_beer_type(user)

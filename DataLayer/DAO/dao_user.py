@@ -36,3 +36,6 @@ class DAOUser(metaclass=Singleton):
     
     def get_email_user(self, user: User) -> str:
         return self.__interface.get_email_user(user.as_dict())
+    
+    def get_favorite_beer_type(self, user: User) -> str:
+        return self.__interface.get_favorite_beer_type(user.as_dict())

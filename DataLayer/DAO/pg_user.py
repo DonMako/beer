@@ -52,3 +52,9 @@ class PGUser(interfaceUser.InterfaceUser):
             email_user = curseur.execute("SELECT email_user FROM users WHERE id_user=(%s) AND password_user=(%s)",
                                          (data["id_user"], data["password_user"])).fetchone()
         return email_user
+    
+    def get_favorite_beer_type(self, data: dict) -> str:
+        with dbConnexion.DBConnexion().connexion.cursor() as curseur:
+            favorite_beer_type = curseur.execute("SELECT favorite_beer_type FROM users WHERE id_user=(%s) AND password_user=(%s)",
+                                         (data["id_user"], data["password_user"])).fetchone()
+        return favorite_beer_type

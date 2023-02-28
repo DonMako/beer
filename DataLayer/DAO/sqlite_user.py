@@ -69,3 +69,14 @@ class SQLiteUser(interfaceUser.InterfaceUser):
         else:
             email_user = None
         return email_user
+    
+    def get_favorite_beer_type(self, data: dict) -> str:
+        curseur = dbConnexion.DBConnexion().connexion.cursor()
+        curseur.execute("SELECT favorite_beer_type FROM users WHERE id_user=:id_user, password_user=:password_user", data)
+        result = curseur.fetchone()
+        curseur.close()
+        if result is not None:
+            favorite_beer_type = result
+        else:
+            favorite_beer_type = None
+        return favorite_beer_type

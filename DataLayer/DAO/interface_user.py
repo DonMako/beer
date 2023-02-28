@@ -22,3 +22,7 @@ class InterfaceUser(ABC):
     @abstractmethod
     def get_email_user(self, data: dict) -> str:
         raise NotImplementedError
+    
+    @abstractmethod
+    def get_favorite_beer_type(self, data: dict) -> str:
+        raise NotImplementedError
