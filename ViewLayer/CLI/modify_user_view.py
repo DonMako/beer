@@ -2,7 +2,7 @@ from BusinessLayer.BusinessObjects.user import User
 import BusinessLayer.LocalServices.user_service as user_service
 from PyInquirer import prompt
 import ViewLayer.CLI.abstract_view as abstract_view
-import ViewLayer.CLI.email_service as email_service
+import BusinessLayer.LocalServices.email_service as email_service
 import ViewLayer.CLI.menu_view as menu_view
 import ViewLayer.CLI.session as session
 import ViewLayer.CLI.start_view as start_view
