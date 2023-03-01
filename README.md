@@ -41,20 +41,20 @@ The application displays finally the name of the corresponding pubs.
 
 ```mermaid
 graph LR
-    A[User] --through the terminal--> B[ViewLayer]
+    A[User] --through the terminal--> b1[CLI]
     subgraph ViewLayer
-    b1[CLI]
+    b1
     end
-    B --> C[BusinessLayer]
+    b1 --> c2[LocalServices]
     subgraph BusinessLayer
     c1[BusinessObjects]
     c2[LocalServices]
     end
-    C --> D[DataLayer]
+    c2 --> d1[DAO]
     subgraph DataLayer
     d1[DAO]
     end
-    D --> E((DataBase))
+    d1 --> E((DataBase))
 ```
     
 The BIERE project leaves the choice of the database engine to the user.
