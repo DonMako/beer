@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
     id_user CHAR(128) PRIMARY KEY NOT NULL,
     password_user CHAR(128) NOT NULL,
-    favorite_type_beer CHAR(128) NOT NULL,
+    favorite_beer_type CHAR(128) NOT NULL,
+    favorite_beer_name CHAR(128) NOT NULL,
     budget_user float NOT NULL,
 );
 
