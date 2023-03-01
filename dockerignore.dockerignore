@@ -1,0 +1,9 @@
+# Ignore files and directories
+.git
+.vscode
+__pycache__
+*.pyc
+
+# Ignore log files
+logs/
+*.log
