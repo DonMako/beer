@@ -39,6 +39,7 @@ The application displays finally the name of the corresponding pubs.
 
 ## Structure of the project
 
+```mermaid
 graph LR
     A[User] --through the terminal--> B[ViewLayer]
     subgraph ViewLayer
@@ -51,6 +52,7 @@ graph LR
     subgraph DataLayer
     d1[DAO]
     D --> E((DataBase))
+```
     
 The BIERE project leaves the choice of the database engine to the user.
 
