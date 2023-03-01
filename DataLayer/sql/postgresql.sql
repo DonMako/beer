@@ -10,6 +10,12 @@ DROP TABLE IF EXISTS beers;
 CREATE TABLE IF NOT EXISTS beers (
     name_beer VARCHAR(50) NOT NULL,
     type_beer CHAR(128) NOT NULL,
+);
+
+DROP TABLE IF EXISTS menu;
+CREATE TABLE IF NOT EXISTS menu (
+    name_pub VARCHAR(50) NOT NULL,
+    name_beer VARCHAR(50) NOT NULL,
     price_beer float8 NOT NULL,
 );
 
