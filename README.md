@@ -1,10 +1,9 @@
 # Project BIERE
-
-## What is the BIERE project ?
+## What is the BIERE project ?
 
 The BIERE project (for "Bacchus : Identification Et Récupération des Établissements") is a french application aiming to give pubs' adresses to users, according to their localisation and their profile (the favorite beer flavor and their budget).
 
-## Installation
+## Installation
 ### Via Docker
 
 1. Make sure you have Docker installed on your system.
@@ -12,7 +11,8 @@ The BIERE project (for "Bacchus : Identification Et Récupération des Établiss
 3. Navigate to the root directory of the cloned repository: `cd beer`
 4. Build the Docker image: `docker build -t mybeerapp .`
 5. Run the Docker container: `docker run -it mybeerapp`
-### Via l'interpréteur Python
+
+### Via the Python interpreter
 
 If you have Python 3.8 and pip installed on your system, you can install and execute the BIERE project from its sources:
 
@@ -40,6 +40,7 @@ The application displays finally the name of the corresponding pubs.
 ## Data structure
 
 The BIERE project leaves the choice of the database engine to the user.
+
 It is for the moment possible to use PostgreSQL or SQLite. 
 
 ```mermaid
@@ -69,7 +70,7 @@ classDiagram
     }
 ```
 
-## Ideas for the future
+## Ideas for the future
 
 Here are some ideas that we want to implement to increase the utility of the project BIERE :
 - make phone version of the application (IOS & Android);
@@ -77,8 +78,4 @@ Here are some ideas that we want to implement to increase the utility of the pro
 
 ## Authors
 
-BERTAIL Aurélien
-
-EVAIN Manon
-
-MACAUX Lucas
+MACAUX Lucas, BERTAIL Aurélien & EVAIN Manon
