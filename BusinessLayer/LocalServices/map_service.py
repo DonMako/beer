@@ -2,7 +2,7 @@ import json
 import urllib.request
 
 
-def get_itinerary(starting_adress: str, final_adress: str): 
+def get_itinerary(starting_adress: str, final_adress: str, mode): 
     with open('./utils/api_key.txt') as f:
         api_key = f.readline()
         f.close
