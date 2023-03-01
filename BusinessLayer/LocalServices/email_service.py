@@ -1,3 +1,4 @@
+from email.headerregistry import Address
 import smtplib, ssl
 from utils.singleton import Singleton
 
@@ -5,8 +6,11 @@ from utils.singleton import Singleton
 class EMailService(metaclass=Singleton):
 
     def check_valid_email(email: str) -> bool:
-        domain_name = email[-10:]
-        return (domain_name == "@gmail.com")
+        adress = Address(display_name= email)
+        if adress.username is None:
+            return False
+        else:
+            return (adress.domain() == "@gmail.com")
     
     def send_email_modification(email_user: str, info_changed: str):
         smtp_server = "smtp.gmail.com"
@@ -32,4 +36,4 @@ class EMailService(metaclass=Singleton):
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender, password)
-            server.sendmail(sender, addressee, message) 
+            server.sendmail(sender, addressee, message)
