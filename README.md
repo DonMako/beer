@@ -37,11 +37,22 @@ The user must indicate his/her localisation. The application searches then in it
 - are selling beers from the favorite beer type of the user and in his/her budget.
 The application displays finally the name of the corresponding pubs.
 
-## Data structure
+## Structure of the project
 
+graph LR
+    A[User] --through the terminal--> B[ViewLayer]
+    B --> C[BusinessLayer]
+    subgraph BusinessLayer
+    c1[BusinessObjects]
+    c2[LocalServices]
+    C --> D[DataLayer]
+    D --> E((DataBase))
+    
 The BIERE project leaves the choice of the database engine to the user.
 
 It is for the moment possible to use PostgreSQL or SQLite. 
+
+### Data structure
 
 ```mermaid
 classDiagram
