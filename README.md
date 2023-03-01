@@ -41,7 +41,7 @@ The application displays finally the name of the corresponding pubs.
 
 ```mermaid
 graph LR
-    A[User] --through the terminal--> b1[CLI]
+    A(User) --through the terminal--> b1[CLI]
     subgraph ViewLayer
     b1
     end
