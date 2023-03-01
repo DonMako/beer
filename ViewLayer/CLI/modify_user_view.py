@@ -34,29 +34,32 @@ class ModifyUserView(abstract_view.AbstractView):
                     self.__user.password_user = answer['password']
                     succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = user_service.UserService().modify_user(self.__user)
-                        email_service.EMailService.send_email(email_adress, 'password')
+                        email_adress = user_service.UserService().get_email_user(self.__user)
+                        email_service.EMailService.send_email_modification(email_adress, 'password')
                 elif "F" in str.upper(answers0['choices'][0]):
                     prompt_favorite_beer_type = [{'type': 'input', 'name': 'favorite_beer_type', 'message': "New favorite beer flavor :"}]
                     answer = prompt(prompt_favorite_beer_type)
                     self.__user.favorite_beer_type = answer['favorite_beer_type']
                     succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = user_service.UserService().modify_user(self.__user)
-                        email_service.EMailService.send_email(email_adress, 'favorite beer type')
+                        email_adress = user_service.UserService().get_email_user(self.__user)
+                        email_service.EMailService.send_email_modification(email_adress, 'favorite beer type')
                 elif "B" in str.upper(answers0['choices'][0]):
                     prompt_budget = [{'type': 'input', 'name': 'budget_user', 'message': "New budget :",'filter': float}]
                     answer = prompt(prompt_budget)
                     self.__user.budget_user = answer['budget_user']
                     succes = user_service.UserService().modify_user(self.__user)
                     if succes:
-                        email_adress = user_service.UserService().modify_user(self.__user)
-                        email_service.EMailService.send_email(email_adress, 'budget')
+                        email_adress = user_service.UserService().get_email_user(self.__user)
+                        email_service.EMailService.send_email_modification(email_adress, 'budget')
                 elif "D" in str.upper(answers0['choices'][0]):
                     prompt_verif = [{'type': 'input', 'name': 'verif', 'message': "You are about to delete your account. Do you confirm to do this action ?"}]
                     answer = prompt(prompt_verif)
                     if answer:
                         succes = user_service.UserService().delete_user(self.__user)
+                        if succes:
+                            email_adress = user_service.UserService().get_email_user(self.__user)
+                            email_service.EMailService.send_email_deletion(email_adress)
                         return start_view.StartView()
                 else:
                     succes = True
