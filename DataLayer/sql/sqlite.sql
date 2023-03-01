@@ -20,8 +20,9 @@ CREATE TABLE IF NOT EXISTS pubs (
 
 DROP TABLE IF EXISTS menu;
 CREATE TABLE IF NOT EXISTS menu (
+    id_menu serial PRIMARY KEY NOT NULL,
     price_beer float NOT NULL,
-    FOREIGN KEY (name_beer) REFERENCES beers(name_beer)
+    FOREIGN KEY (name_beer) REFERENCES beers(name_beer),
     FOREIGN KEY (name_pub) REFERENCES pubs(name_pub)
 );
 

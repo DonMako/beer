@@ -20,8 +20,9 @@ CREATE TABLE IF NOT EXISTS pubs (
 
 DROP TABLE IF EXISTS menu;
 CREATE TABLE IF NOT EXISTS menu (
+    id_menu serial PRIMARY KEY NOT NULL,
     price_beer float NOT NULL,
-    FOREIGN KEY (name_beer) REFERENCES beers(name_beer)
+    FOREIGN KEY (name_beer) REFERENCES beers(name_beer),
     FOREIGN KEY (name_pub) REFERENCES pubs(name_pub)
 );
 
@@ -45,4 +46,6 @@ INSERT INTO pubs (name_pub, localisation_pub)
 VALUES 
     ("L'upper", '7 allée Rallier du Baty, 35000 Rennes'), 
     ("O'Connell's", '7 Place du Parlement de Bretagne, 35000 Rennes'),
-    ("La maison - bar à bières artisanales", '18 rue de Robien, 35000 Rennes');
+    ("La maison - bar à bières artisanales", '18 rue de Robien, 35000 Rennes'); 
+
+INSERT INTO 
