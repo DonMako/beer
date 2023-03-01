@@ -72,6 +72,6 @@ Here are some ideas that we want to implement to increase the utility of the pro
 
 BERTAIL Aurélien
 
-ÉVAIN Manon
+EVAIN Manon
 
 MACAUX Lucas
