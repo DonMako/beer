@@ -12,11 +12,11 @@ class StartView(abstract_view.AbstractView):
 
     def make_choice(self):
         answers = prompt(self.__questions)
-        if str.upper(answers['choice'][0]) == "Connect":
+        if answers['choice'][0] == 'C':
             return connexion_view.ConnexionView()
-        elif str.upper(answers['choice'][0]) == "Create account":
+        elif answers['choice'][0] == "N":
             return new_user_view.NewUserView()
-        elif str.upper(answers['choice'][0]) == "Quit":
+        elif answers['choice'][0] == "Q":
             return None
         else:
             return StartView()
