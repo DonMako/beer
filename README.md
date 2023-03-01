@@ -67,11 +67,13 @@ It is for the moment possible to use PostgreSQL or SQLite.
 classDiagram
     Pub -- Menu
     Menu -- Beer
+    User -- Beer
     class User{
       +String id_user
       +String email_user
       +String password_user
       +String favorite_beer_type
+      +String favorite_beer_name
       +Float budget_user
     }
     class Beer{
@@ -89,6 +91,8 @@ classDiagram
       +String city_pub
     }
 ```
+
+*The 'favorite_beer_name' of the User's class is an optional one.*
 
 ## Ideas for the future
 
