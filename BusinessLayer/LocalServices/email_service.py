@@ -10,7 +10,7 @@ class EMailService(metaclass=Singleton):
         if adress.username is None:
             return False
         else:
-            return (adress.domain() == "@gmail.com")
+            return ("@gmail.com" in email)
     
     def send_email_modification(email_user: str, info_changed: str):
         smtp_server = "smtp.gmail.com"

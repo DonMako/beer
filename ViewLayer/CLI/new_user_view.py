@@ -15,7 +15,7 @@ class NewUserView(abstract_view.AbstractView):
                             {'type': 'input', 'name': 'email_user', 'message': 'Enter a Gmail adress :'},
                             {'type': 'password', 'name': 'password_user', 'message': 'Enter a password :'},
                             {'type': 'input', 'name': 'favorite_beer_type', 'message': "Enter your favorite beers' type :"},
-                            {'type': 'input', 'name': 'favorite_beer_type', 'message': "Enter your favorite beers' name(s) :"},
+                            {'type': 'input', 'name': 'favorite_beer_name', 'message': "Enter your favorite beers' name(s) :"},
                             {'type': 'input', 'name': 'budget_user', 'message': "Enter your budget :", 'filter': float}]
         self.__question_email = [{'type': 'input', 'name': 'email_user', 'message': 'Enter a Gmail adress :'}]
 
