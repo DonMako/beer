@@ -41,11 +41,15 @@ The application displays finally the name of the corresponding pubs.
 
 graph LR
     A[User] --through the terminal--> B[ViewLayer]
+    subgraph ViewLayer
+    b1[CLI]
     B --> C[BusinessLayer]
     subgraph BusinessLayer
     c1[BusinessObjects]
     c2[LocalServices]
     C --> D[DataLayer]
+    subgraph DataLayer
+    d1[DAO]
     D --> E((DataBase))
     
 The BIERE project leaves the choice of the database engine to the user.
