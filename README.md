@@ -44,13 +44,16 @@ graph LR
     A[User] --through the terminal--> B[ViewLayer]
     subgraph ViewLayer
     b1[CLI]
+    end
     B --> C[BusinessLayer]
     subgraph BusinessLayer
     c1[BusinessObjects]
     c2[LocalServices]
+    end
     C --> D[DataLayer]
     subgraph DataLayer
     d1[DAO]
+    end
     D --> E((DataBase))
 ```
     
