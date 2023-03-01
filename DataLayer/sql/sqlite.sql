@@ -40,3 +40,9 @@ VALUES
     ('1664 Blanche', 'Blanche'),
     ('Leffe', 'Blonde'), 
     ('Leffe Ruby', 'Rouge');
+
+INSERT INTO pubs (name_pub, localisation_pub)
+VALUES 
+    ("L'upper", '7 allée Rallier du Baty, 35000 Rennes'), 
+    ("O'Connell's", '7 Place du Parlement de Bretagne, 35000 Rennes'),
+    ("La maison - bar à bières artisanales", '18 rue de Robien, 35000 Rennes');
