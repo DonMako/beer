@@ -24,3 +24,19 @@ CREATE TABLE IF NOT EXISTS pubs (
     name_pub VARCHAR(50) NOT NULL,
     localisation_pub VARCHAR(50) NOT NULL,
 );
+
+INSERT INTO beers (name_beer, type_beer)
+VALUES 
+    ('Stella Artois', 'Blonde'),
+    ('Corona', 'Blonde'), 
+    ('Carlsberg', 'Blonde'),
+    ('Guinness', 'Brune'), 
+    ('Kronenbourg', 'Blonde'), 
+    ('Desperados', 'Blonde'),
+    ('Desperados Red', 'Rouge'),
+    ('Hoegaarden', 'Blanche'), 
+    ('Heineken', "Blonde"), 
+    ('1664', 'Blonde'),
+    ('1664 Blanche', 'Blanche'),
+    ('Leffe', 'Blonde'), 
+    ('Leffe Ruby', 'Rouge');
