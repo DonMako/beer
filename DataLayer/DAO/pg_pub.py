@@ -5,12 +5,17 @@ from typing import List
 
 class PGPub(interface_pub.InterfacePub):
 
-    def get_pubs_localisation(self, localisation: str) -> List:
+    def get_pubs_city(self, city: str) -> List:
         with db_connexion.DBConnexion().connexion.cursor() as curseur:
-            rows = curseur.execute("SELECT * FROM pubs WHERE localisation_pub=(%s)", (localisation)).fetchall()
+            rows = curseur.execute("SELECT * FROM pubs WHERE city_pub=(%s)", (city)).fetchall()
         return rows
     
-    def get_name_pub(self, data: dict) -> List:
+    def get_name_pub(self, data: dict) -> str:
         with db_connexion.DBConnexion().connexion.cursor() as curseur:
             rows = curseur.execute("SELECT name_pub FROM pubs WHERE name_pub=(%s)", (data)).fetchall()
+        return rows
+    
+    def get_adress_pub(self, data: dict) -> str:
+        with db_connexion.DBConnexion().connexion.cursor() as curseur:
+            rows = curseur.execute("SELECT adress_pub FROM pubs WHERE name_pub=(%s)", (data)).fetchall()
         return rows

@@ -5,9 +5,9 @@ from typing import List
 
 class SQLitePub(interface_pub.InterfacePub):
 
-    def get_pubs_localisation(self, localisation: str) -> List:
+    def get_pubs_city(self, city: str) -> List:
         curseur = db_connexion.DBConnexion().connexion.cursor()
-        curseur.execute("SELECT * FROM pubs WHERE localisation=:localisation", {"localisation": localisation})
+        curseur.execute("SELECT * FROM pubs WHERE city_pub=:city", {"city": city})
         rows = curseur.fetchall()
         curseur.close()
         answer = []
@@ -16,13 +16,24 @@ class SQLitePub(interface_pub.InterfacePub):
             answer.append(data)
         return answer
     
-    def get_name_pub(self, data: dict) -> float:
+    def get_name_pub(self, data: dict) -> str:
         curseur = db_connexion.DBConnexion().connexion.cursor()
         curseur.execute("SELECT name_pub FROM pubs WHERE name_pub=:name_pub", data)
         result = curseur.fetchone()
         curseur.close()
         if result is not None:
-            budget_user = result
+            name_pub = result
         else:
-            budget_user = None
-        return budget_user
+            name_pub = None
+        return name_pub
+    
+    def get_adress_pub(self, data: dict) -> str:
+        curseur = db_connexion.DBConnexion().connexion.cursor()
+        curseur.execute("SELECT adress_pub FROM pubs WHERE name_pub=:name_pub", data)
+        result = curseur.fetchone()
+        curseur.close()
+        if result is not None:
+            adress_pub = result
+        else:
+            adress_pub = None
+        return adress_pub
