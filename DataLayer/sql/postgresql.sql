@@ -21,14 +21,9 @@ CREATE TABLE IF NOT EXISTS pubs (
     city_pub CHAR(128) NOT NULL,
 );
 
-<<<<<<< HEAD
 DROP TABLE IF EXISTS menu;
 CREATE TABLE IF NOT EXISTS menu (
     id_menu serial PRIMARY KEY NOT NULL,
-=======
-DROP TABLE IF EXISTS menus;
-CREATE TABLE IF NOT EXISTS menus (
->>>>>>> 3290cf73bf200e5d74a9d99df04f1b8882ac52e5
     price_beer float NOT NULL,
     FOREIGN KEY (name_beer) REFERENCES beers(name_beer),
     FOREIGN KEY (name_pub) REFERENCES pubs(name_pub)
