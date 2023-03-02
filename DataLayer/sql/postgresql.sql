@@ -47,13 +47,6 @@ VALUES
 
 INSERT INTO pubs(name_pub, adress_pub, city_pub)
 VALUES 
-<<<<<<< HEAD
-    ("L'upper", '7 allée Rallier du Baty, 35000 Rennes'), 
-    ("O'Connell's", '7 Place du Parlement de Bretagne, 35000 Rennes'),
-    ("La maison - bar à bières artisanales", '18 rue de Robien, 35000 Rennes'); 
-
-INSERT INTO 
-=======
     ("L'upper", '7 allée Rallier du Baty', 'Rennes'), 
     ("O'Connell's", '7 Place du Parlement de Bretagne', 'Rennes'),
     ("La maison - bar à bières artisanales", '18 rue de Robien', 'Rennes');
@@ -99,4 +92,3 @@ VALUES
     ("La maison - bar à bières artisanales", '1664 Blanche', 11.50),
     ("La maison - bar à bières artisanales", 'Leffe', 5.43), 
     ("La maison - bar à bières artisanales", 'Leffe Ruby', 11.50);
->>>>>>> 3290cf73bf200e5d74a9d99df04f1b8882ac52e5
