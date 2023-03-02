@@ -51,7 +51,7 @@ VALUES
     ("O'Connell's", '7 Place du Parlement de Bretagne', 'Rennes'),
     ("La maison - bar à bières artisanales", '18 rue de Robien', 'Rennes');
 
-INSERT INTO menus(name_pub, name_beer, price_beer)
+INSERT INTO menu(name_pub, name_beer, price_beer)
 VALUES 
     ("L'upper", 'Stella Artois', 2.50),
     ("L'upper", 'Corona', 2.50), 
