@@ -41,7 +41,7 @@ VALUES
     ('Desperados', 'Blonde'),
     ('Desperados Red', 'Rouge'),
     ('Hoegaarden', 'Blanche'), 
-    ('Heineken', "Blonde"), 
+    ('Heineken', 'Blonde'), 
     ('1664', 'Blonde'),
     ('1664 Blanche', 'Blanche'),
     ('Leffe', 'Blonde'), 
