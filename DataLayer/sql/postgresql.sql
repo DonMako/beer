@@ -5,20 +5,20 @@ CREATE TABLE IF NOT EXISTS users (
     password_user CHAR(128) NOT NULL,
     favorite_beer_type CHAR(128) NOT NULL,
     favorite_beer_name CHAR(128) NOT NULL,
-    budget_user float NOT NULL,
+    budget_user float NOT NULL
 );
 
 DROP TABLE IF EXISTS beers;
 CREATE TABLE IF NOT EXISTS beers (
     name_beer VARCHAR(50) PRIMARY KEY NOT NULL,
-    type_beer CHAR(128) NOT NULL,
+    type_beer CHAR(128) NOT NULL
 );
 
 DROP TABLE IF EXISTS pubs;
 CREATE TABLE IF NOT EXISTS pubs (
     name_pub VARCHAR(50) PRIMARY KEY NOT NULL,
     adress_pub VARCHAR(50) NOT NULL,
-    city_pub CHAR(128) NOT NULL,
+    city_pub CHAR(128) NOT NULL
 );
 
 DROP TABLE IF EXISTS menu;
@@ -92,10 +92,10 @@ VALUES
     ("La maison - bar à bières artisanales", 'Guinness', 11.50), 
     ("La maison - bar à bières artisanales", 'Kronenbourg', 6.00), 
     ("La maison - bar à bières artisanales", 'Desperados', 7.00),
-    ("La maison - bar à bières artisanales", 'Desperados Red', , 2.50),
+    ("La maison - bar à bières artisanales", 'Desperados Red', 2.50),
     ("La maison - bar à bières artisanales", 'Hoegaarden', 5.43), 
     ("La maison - bar à bières artisanales", 'Heineken', 6.00), 
-    ("La maison - bar à bières artisanales", '1664', , 2.50),
+    ("La maison - bar à bières artisanales", '1664', 2.50),
     ("La maison - bar à bières artisanales", '1664 Blanche', 11.50),
     ("La maison - bar à bières artisanales", 'Leffe', 5.43), 
     ("La maison - bar à bières artisanales", 'Leffe Ruby', 11.50);
