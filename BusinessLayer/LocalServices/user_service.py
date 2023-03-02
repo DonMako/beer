@@ -10,7 +10,7 @@ class UserService(metaclass=Singleton):
         data_user = {'id_user': id_user, 'email_user': email_user, 'password_user': password_user,
                      'favorite_beer_type': favorite_beer_type, 'favorite_beer_name': favorite_beer_name, 'budget_user': budget_user}
         new_user = User.from_dict(data_user)
-        return dao_user.DAOUser().create_user(new_user, id_user, password_user)
+        return dao_user.DAOUser().create_user(new_user, password_user)
 
     @staticmethod
     def modify_user(user_to_modify: User) -> bool:

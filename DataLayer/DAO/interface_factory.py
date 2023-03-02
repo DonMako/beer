@@ -13,9 +13,10 @@ from utils.singleton import Singleton
 
 
 class InterfaceFactory(metaclass=Singleton):
-    
     @staticmethod
     def get_interface(type_dao: str):
+        os.environ["BIERE_ENGINE"]="PostgreSQL"
+
         if os.environ["BIERE_ENGINE"] == "SQLite":
             if type_dao == "Beer":
                 return sqlite_beer.SQLiteBeer()

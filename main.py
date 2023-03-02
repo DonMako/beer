@@ -1,9 +1,10 @@
 import dotenv
 from pathlib import Path
 import ViewLayer.CLI.start_view as start_view
-
+import os
 
 if __name__ == '__main__':
+    
     base_path = Path(__file__).parent
     if Path(base_path / "./.env").is_file():
         dotenv_file = (base_path / "./.env").resolve()
