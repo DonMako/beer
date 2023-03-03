@@ -22,6 +22,7 @@ class NewUserView(abstract_view.AbstractView):
     def make_choice(self):
         answers = prompt(self.__questions)
         while not(email_service.EMailService.check_valid_email(answers["email_user"])):
+            print("Invalid Gmail adress.")
             answer_email = prompt(self.__question_email)
             answers["email_user"] = answer_email["email_user"]
         succes = user_service.UserService().create_user(answers['id_user'], answers['email_user'], answers['password_user'], 

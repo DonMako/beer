@@ -59,7 +59,7 @@ graph LR
     
 The BIERE project leaves the choice of the database engine to the user.
 
-It is for the moment possible to use PostgreSQL or SQLite. 
+It is for the moment possible to only use PostgreSQL, but we hope to make SQLite available in a near future. 
 
 ### Data structure
 

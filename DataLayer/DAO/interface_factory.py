@@ -36,7 +36,7 @@ class InterfaceFactory(metaclass=Singleton):
                 return pg_connexion.PGConnexion()
             if type_dao == "Menu":
                 return pg_menu.PGMenu()
-            if type_dao == "User":
+            if type_dao == "Pub":
                 return pg_pub.PGPub()
             if type_dao == "User":
                 return pg_user.PGUser()
