@@ -16,7 +16,6 @@ class MenuView(abstract_view.AbstractView):
     def make_choice(self):
         if session.Session().user is None:
             return start_view.StartView()
-        self.__questions[0]['choices'].append('Q) Me déconnecter')
         answers = prompt(self.__questions)
         if str.upper(answers['choice'][0]) == "F":
             return find_pubs_view.FindPubsView()
