@@ -4,8 +4,7 @@ import BusinessLayer.LocalServices.user_service as user_service
 import BusinessLayer.LocalServices.email_service as email_service
 from PyInquirer import prompt
 import ViewLayer.CLI.abstract_view as abstract_view
-import ViewLayer.CLI.menu_view as menu_view
-import ViewLayer.CLI.session as session
+import ViewLayer.CLI.start_view as start_view
 
 
 class NewUserView(abstract_view.AbstractView):
@@ -30,5 +29,4 @@ class NewUserView(abstract_view.AbstractView):
         if not(succes):
             print("Error")
             return NewUserView()
-        session.Session().user = session_service.SessionService().open_session(answers['id_user'], answers['password_user'])
-        return menu_view.MenuView()
+        return start_view.StartView()
