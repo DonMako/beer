@@ -98,7 +98,7 @@ classDiagram
 
 Here are some ideas that we want to implement to increase the utility of the project BIERE :
 - make phone version of the application (IOS & Android);
-- use Google Maps' API Places instead of a fixed database of pubs, so that the data would be up-to-date.
+- use Google Maps' API "SDK Places" instead of a fixed database of pubs, so that the data would be up-to-date.
 
 ## Authors
 
